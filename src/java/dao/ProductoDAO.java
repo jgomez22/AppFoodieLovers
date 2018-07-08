@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import java.sql.PreparedStatement;
@@ -16,34 +11,34 @@ import modelo.Producto;
 
 public class ProductoDAO extends dao {
     
-     public List<Producto> listar(int idempresa) throws SQLException{
-          List<Producto> lista=null;
-            ResultSet rs;
+    public List<Producto> listar() throws SQLException {
+        List<Producto> lista = null;
+        ResultSet rs;
+
         try {
             this.Conectar();
-            PreparedStatement pst=this.getCn().prepareStatement("SELECT * FROM producto");
+            PreparedStatement pst = this.getCn().prepareStatement("SELECT idproducto, nombre, precio, delivery, reserva, imagen,idempresa FROM producto");
+            rs = pst.executeQuery();
+            lista = new ArrayList();
             
-            rs=pst.executeQuery();
-            lista=new ArrayList();
             while(rs.next()){
-            Producto producto = new Producto();
-            producto.setIdproducto(rs.getInt("idproducto"));
-            producto.setDelivery(rs.getInt("delivery"));
-            producto.setNombre(rs.getString("nombre"));
-            producto.setPrecio(rs.getDouble("precio"));
-            producto.setReserva(rs.getInt("reserva"));
-            
-            
-            lista.add(producto);
-            
+                Producto pro = new Producto();
+                pro.setIdproducto(rs.getInt("idproducto"));
+                pro.setNombre(rs.getString("nombre"));
+                pro.setPrecio(rs.getDouble("precio"));
+                pro.setDelivery(rs.getInt("delivery"));
+                pro.setReserva(rs.getInt("reserva"));
+                pro.setImagen(rs.getString("imagen"));
+                pro.setIdempresa(rs.getInt("idempresa"));
+                lista.add(pro);
             }
+                     
         } catch (SQLException ex) {
             Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-        this.Cerrar();
+        } finally {
+            this.Cerrar();
         }
         return lista;
     }
 
-    
 }
