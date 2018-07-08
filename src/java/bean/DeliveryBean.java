@@ -1,10 +1,8 @@
 package bean;
 
-import dao.UsuarioDAO;
+import dao.DeliveryDAO;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import modelo.Delivery;
@@ -12,8 +10,9 @@ import modelo.Delivery;
 @ManagedBean
 @RequestScoped
 public class DeliveryBean {
-    
+
     private Delivery delivery = new Delivery();
+    private List<Delivery> lstDelivery;
 
     public Delivery getDelivery() {
         return delivery;
@@ -22,5 +21,21 @@ public class DeliveryBean {
     public void setDelivery(Delivery delivery) {
         this.delivery = delivery;
     }
-      
+
+    public List<Delivery> getLstDelivery() {
+        return lstDelivery;
+    }
+
+    public void setLstDelivery(List<Delivery> lstDelivery) {
+        this.lstDelivery = lstDelivery;
+    }
+
+    public void listar() throws SQLException {
+        DeliveryDAO dao = new DeliveryDAO();
+        try {
+            lstDelivery = dao.listar();
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
 }
