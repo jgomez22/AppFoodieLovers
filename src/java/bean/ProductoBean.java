@@ -13,37 +13,31 @@ import dao.ProductoDAO;
 @ManagedBean
 @RequestScoped
 public class ProductoBean extends BaseBean {
-    private Producto usuario = new Producto();
-    private List<Producto> lsProducto;
+    private Producto producto = new Producto();
+    private List<Producto> lstProducto;
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    public List<Producto> getLstProducto() {
+        return lstProducto;
+    }
+
+    public void setLstProducto(List<Producto> lstProducto) {
+        this.lstProducto = lstProducto;
+    }
     
-    
-    
-    public  void listar(){
-        try {
-            ProductoDAO dao=new ProductoDAO();
-            lsProducto = dao.listar(1);
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
+    public void lista() throws SQLException{
+        ProductoDAO dao = new ProductoDAO();
+        try{
+            lstProducto = dao.listar();
+        } catch(SQLException e){
+            throw e;
         }
-    
     }
-
-    public Producto getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Producto usuario) {
-        this.usuario = usuario;
-    }
-
-    public List<Producto> getLsProducto() {
-        return lsProducto;
-    }
-
-    public void setLsProducto(List<Producto> lsProducto) {
-        this.lsProducto = lsProducto;
-    }
-    
-    
-    
 }
