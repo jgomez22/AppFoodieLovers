@@ -33,4 +33,25 @@ public class UsuarioDAO extends dao{
         }
     }
     
+    public String obtenerNombre(int id){
+        String nombre=null;
+        ResultSet rs;
+        
+        try {
+            this.Conectar();
+            PreparedStatement pst = this.getCn().prepareStatement("SELECT nombre from usuario WHERE idusuario=? LIMIT 1");
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+            
+            while(rs.next()){
+                nombre=rs.getString("nombre");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return nombre;
+    }
+    
 }

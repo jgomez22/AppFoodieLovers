@@ -33,4 +33,15 @@ public class UsuarioBean {
         }        
         
     }
+    
+    public String obtenerNombre(int id){
+        String nombre="";
+        UsuarioDAO dao = new UsuarioDAO();
+        try{
+            nombre=dao.obtenerNombre(id);
+        } catch (Exception e){
+            throw e;
+        }
+        return nombre;
+    }
 }

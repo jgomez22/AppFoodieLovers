@@ -38,4 +38,13 @@ public class DeliveryBean {
             throw e;
         }
     }
+    
+    public void listarEmpresa (int id, int idest) throws Exception{
+        DeliveryDAO dao = new DeliveryDAO();
+        try{
+            lstDelivery = dao.listarEmpresa(id, idest);
+        } catch(Exception e){
+            throw e;
+        }
+    }
 }
