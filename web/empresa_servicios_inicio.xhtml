@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:pe="http://primefaces.org/ui/extensions">
     <h:head>
-        <title>Registrar Usuario</title>
+        <title>FoodieLovers</title>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,54 +20,57 @@
 
                     <div class="col-md-4">
 
-                        <img align="center" height="200" width="200" src="resources/images/user.png" class="img-responsive" alt="Responsive image"/>
 
-                        <div class="list-group">
-                            <a href="actualizarDatosUsuario.jsp" class="list-group-item">Actualizar Datos</a>
-                            <a href="indexRestaurante.jsp" class="list-group-item">Cuenta Restaurante</a>
-                        </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="row">
                             <br />
                             <br />
-                            <h2 align="center">Buenos días : <h:outputLabel value="#{usuarioBean.obtenerNombre(1)}" ></h:outputLabel></h2>
+                            <h2 align="center">Restaurant : <h:outputLabel value="" ></h:outputLabel></h2>
 
                             <h:form>
 
-                                <p:commandButton class="btn btn-primary" value="Listar Delivery" actionListener="#{deliveryBean.listar(2)}" update="data" />
-
+                                <p:commandButton class="btn btn-primary" value="Listar Delivery" actionListener="#{deliveryBean.listarEmpresa(1,1)}" update="data" />
+                                
                                 <h:dataTable class="table table-responsive" id="data" value="#{deliveryBean.lstDelivery}" var="delivery">
 
                                     <h:column>
                                         <f:facet name="header">
-                                            <h:outputText value="Codigo"></h:outputText>
+                                            <h:outputText value="Usuario"></h:outputText>
                                         </f:facet>
-                                        <h:outputText value="#{delivery.iddelivery}"></h:outputText>
+                                        <h:outputText value="#{delivery.idusuario}"></h:outputText>
                                     </h:column>
 
                                     <h:column>
                                         <f:facet name="header">
                                             <h:outputText value="Comida"></h:outputText>
                                         </f:facet>
-                                        <h:outputText value="#{productoBean.obtenerNombre(delivery.idproducto)}"></h:outputText>
+                                        <h:outputText value="#{delivery.idproducto}"></h:outputText>
                                     </h:column>
 
                                     <h:column>
                                         <f:facet name="header">
-                                            <h:outputText value="Restaurante"></h:outputText>
+                                            <h:outputText value="Importe Total"></h:outputText>
                                         </f:facet>
-                                        <h:outputText value="#{empresaBean.obtenerNombre(delivery.idproducto)}"></h:outputText>
+                                        <h:outputText value="#{delivery.importe_total}"></h:outputText>
                                     </h:column>
-                                    
+
                                     <h:column>
                                         <f:facet name="header">
-                                            <h:outputText value="Estado"></h:outputText>
+                                            <h:outputText value="Direccion"></h:outputText>
                                         </f:facet>
-                                        <h:outputText value="#{estadoBean.obtenerNombre(delivery.idestado)}"></h:outputText>
+                                        <h:outputText value="#{delivery.direccion}"></h:outputText>
                                     </h:column>
-                                    
+
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Cambiar"></h:outputText>
+                                        </f:facet>
+                                        <h:outputText value="#{delivery.iddelivery}"></h:outputText>
+                                        <h:button value="En Proceso" onclick="#{deliveryBean.actualizaraProceso(delivery.iddelivery)}"></h:button>
+                                    </h:column>
+
                                 </h:dataTable>
 
                             </h:form>
