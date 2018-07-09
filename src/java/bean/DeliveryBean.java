@@ -30,10 +30,10 @@ public class DeliveryBean {
         this.lstDelivery = lstDelivery;
     }
 
-    public void listar() throws SQLException {
+    public void listar(int id) throws SQLException {
         DeliveryDAO dao = new DeliveryDAO();
         try {
-            lstDelivery = dao.listar();
+            lstDelivery = dao.listar(id);
         } catch (SQLException e) {
             throw e;
         }
