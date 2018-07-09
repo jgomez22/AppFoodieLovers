@@ -23,9 +23,9 @@
                             <div class="col-md-4 col-xs-12">
                                 <div class="col-md-12 column " style="margin-bottom: 30px">
                                     <ul class="nav nav-pills nav-stacked">
-                                        <li><a href=""><span class="glyphicon glyphicon-chevron-right"></span> Home</a></li>
+                                        <li><a href="home.xhtml"><span class="glyphicon glyphicon-chevron-right"></span> Home</a></li>
                                         <li class="active"  ><a href=""><span class="glyphicon glyphicon-chevron-right"></span>Publicacion</a></li>
-                                        <li><a href="/producto_lista.xhtml"><span class="glyphicon glyphicon-chevron-right"></span>Producto</a></li>
+                                        <li><a href="producto_lista.xhtml"><span class="glyphicon glyphicon-chevron-right"></span>Producto</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -39,21 +39,48 @@
                                 <div class="col-md-2 form-group ">
                                     <button type="submit" style="margin-left:0px" class="btn btn-default">Nuevo</button>
                                 </div>
-                                <p:commandButton value="Listar Usuarios" actionListener="#{ProductoBean.listar(1)}" update="data" />
 
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12" style="padding:5px">
-                                        <p:dataTable id="data" value="#{ProductoBean.lsProducto}" var="producto">
-                                            <p:column headerText="Codigo">
-                                                <p:outputLabel value="#{producto.nombre}"/>
-                                            </p:column>
-                                            <p:column headerText="Nombre">
-                                                <p:outputLabel value="#{producto.nombre}"/>
-                                            </p:column>
-                                            <p:column headerText="Carrera Prof.">
-                                                <p:outputLabel value="#{producto.nombre}"/>
-                                            </p:column>
-                                        </p:dataTable>
+                                         <h:form>
+                                            <h:dataTable class="table table-responsive"  value="#{publicacionBean.listar()}" var="publicacion">
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Id"></h:outputText>
+                                                    </f:facet>
+                                                    <h:outputText value="#{publicacion.idpublicacion}"></h:outputText>
+                                                </h:column>
+
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Nombre"></h:outputText>
+                                                    </f:facet>
+                                                    <h:outputText value="#{publicacion.nombre}"></h:outputText>
+                                                </h:column>
+
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Hora inicio"></h:outputText>
+                                                    </f:facet>
+                                                    <h:outputText value="#{publicacion.horapublicacion}"></h:outputText>
+                                                </h:column>
+                                                
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Hora cierre"></h:outputText>
+                                                    </f:facet>
+                                                    <h:outputText value="#{publicacion.horacierre}"></h:outputText>
+                                                </h:column>
+                                                
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Acciones"></h:outputText>
+                                                    </f:facet>
+                                                    <h:outputText value="EDIT"></h:outputText>
+                                                </h:column>
+
+                                            </h:dataTable>
+                                        </h:form>
                                     </div>
                                 </div>
                             </div>

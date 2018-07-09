@@ -41,6 +41,16 @@ public class ProductoBean {
             throw e;
         }
     }
+    
+    public List<Producto> listar() throws SQLException {
+        ProductoDAO dao = new ProductoDAO();
+        try {
+            lstProducto = dao.listar();
+            return lstProducto;
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
 
     public String obtenerNombre(int id) {
         String nombre = null;
