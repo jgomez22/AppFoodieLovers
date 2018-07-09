@@ -12,7 +12,8 @@ import dao.ProductoDAO;
 
 @ManagedBean
 @RequestScoped
-public class ProductoBean extends BaseBean {
+public class ProductoBean {
+
     private Producto producto = new Producto();
     private List<Producto> lstProducto;
 
@@ -31,13 +32,24 @@ public class ProductoBean extends BaseBean {
     public void setLstProducto(List<Producto> lstProducto) {
         this.lstProducto = lstProducto;
     }
-    
-    public void lista() throws SQLException{
+
+    public void lista() throws SQLException {
         ProductoDAO dao = new ProductoDAO();
-        try{
+        try {
             lstProducto = dao.listar();
-        } catch(SQLException e){
+        } catch (SQLException e) {
             throw e;
         }
+    }
+
+    public String obtenerNombre(int id) {
+        String nombre = null;
+        ProductoDAO dao = new ProductoDAO();
+        try {
+            nombre = dao.obtenerNombre(id);
+        } catch (Exception e) {
+            throw e;
+        }
+        return nombre;
     }
 }

@@ -51,21 +51,21 @@
                                         <f:facet name="header">
                                             <h:outputText value="Comida"></h:outputText>
                                         </f:facet>
-                                        <h:outputText value="#{delivery.idproducto}"></h:outputText>
+                                        <h:outputText value="#{productoBean.obtenerNombre(delivery.idproducto)}"></h:outputText>
                                     </h:column>
 
                                     <h:column>
                                         <f:facet name="header">
                                             <h:outputText value="Restaurante"></h:outputText>
                                         </f:facet>
-                                        <h:outputText value=""></h:outputText>
+                                        <h:outputText value="#{empresaBean.obtenerNombre(delivery.idproducto)}"></h:outputText>
                                     </h:column>
                                     
                                     <h:column>
                                         <f:facet name="header">
                                             <h:outputText value="Estado"></h:outputText>
                                         </f:facet>
-                                        <h:outputText value="#{delivery.idestado}"></h:outputText>
+                                        <h:outputText value="#{estadoBean.obtenerNombre(delivery.idestado)}"></h:outputText>
                                     </h:column>
                                     
                                 </h:dataTable>
