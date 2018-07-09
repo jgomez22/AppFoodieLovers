@@ -36,31 +36,38 @@
 
                             <h:form>
 
-                                <p:commandButton class="btn btn-primary" value="Listar Delivery" actionListener="#{deliveryBean.listar()}" update="data" />
+                                <p:commandButton class="btn btn-primary" value="Listar Delivery" actionListener="#{deliveryBean.listar(2)}" update="data" />
 
                                 <h:dataTable class="table table-responsive" id="data" value="#{deliveryBean.lstDelivery}" var="delivery">
 
                                     <h:column>
                                         <f:facet name="header">
-                                            <h:outputText value="Cantidad"></h:outputText>
+                                            <h:outputText value="Codigo"></h:outputText>
                                         </f:facet>
-                                        <h:outputText value="#{delivery.cantidad}"></h:outputText>
-                                    </h:column>
-                                    
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Importe"></h:outputText>
-                                        </f:facet>
-                                        <h:outputText value="#{delivery.importe_total}"></h:outputText>
-                                    </h:column>
-                                    
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Direccion"></h:outputText>
-                                        </f:facet>
-                                        <h:outputText value="#{delivery.direccion}"></h:outputText>
+                                        <h:outputText value="#{delivery.iddelivery}"></h:outputText>
                                     </h:column>
 
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Comida"></h:outputText>
+                                        </f:facet>
+                                        <h:outputText value="#{productoBean.obtenerNombre(delivery.idproducto)}"></h:outputText>
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Restaurante"></h:outputText>
+                                        </f:facet>
+                                        <h:outputText value="#{empresaBean.obtenerNombre(delivery.idproducto)}"></h:outputText>
+                                    </h:column>
+                                    
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Estado"></h:outputText>
+                                        </f:facet>
+                                        <h:outputText value="#{estadoBean.obtenerNombre(delivery.idestado)}"></h:outputText>
+                                    </h:column>
+                                    
                                 </h:dataTable>
 
                             </h:form>

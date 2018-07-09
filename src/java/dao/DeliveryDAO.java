@@ -11,13 +11,17 @@ import modelo.Delivery;
 
 public class DeliveryDAO extends dao{
     
-    public List<Delivery> listar() throws SQLException{
+    public List<Delivery> listar(int id) throws SQLException{
         List<Delivery> lista = null;
         ResultSet rs;
         
         try {
             this.Conectar();
-            PreparedStatement pst = this.getCn().prepareStatement("SELECT iddelivery, cantidad, importe_total, direccion, detalles, idusuario, idproducto, idestado FROM delivery");
+            PreparedStatement pst = this.getCn().prepareStatement("SELECT "
+                    + "iddelivery, cantidad, importe_total, direccion, detalles, idusuario, idproducto, idestado "
+                    + "FROM delivery "
+                    + "WHERE idusuario=?");
+            pst.setInt(1, id);
             rs = pst.executeQuery();
             lista = new ArrayList();
             
