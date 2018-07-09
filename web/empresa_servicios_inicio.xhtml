@@ -32,7 +32,7 @@
                             <h:form>
 
                                 <p:commandButton class="btn btn-primary" value="Listar Delivery" actionListener="#{deliveryBean.listarEmpresa(1,1)}" update="data" />
-
+                                
                                 <h:dataTable class="table table-responsive" id="data" value="#{deliveryBean.lstDelivery}" var="delivery">
 
                                     <h:column>
@@ -67,7 +67,8 @@
                                         <f:facet name="header">
                                             <h:outputText value="Cambiar"></h:outputText>
                                         </f:facet>
-                                        <p:commandButton value="En Proceso" />
+                                        <h:outputText value="#{delivery.iddelivery}"></h:outputText>
+                                        <h:button value="En Proceso" onclick="#{deliveryBean.actualizaraProceso(delivery.iddelivery)}"></h:button>
                                     </h:column>
 
                                 </h:dataTable>

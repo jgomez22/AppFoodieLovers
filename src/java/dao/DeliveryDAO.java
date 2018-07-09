@@ -10,6 +10,20 @@ import java.util.logging.Logger;
 import modelo.Delivery;
 
 public class DeliveryDAO extends dao {
+    
+    public void actualizaraPro(int iddel) throws SQLException{
+        
+        try {
+            this.Conectar();
+            PreparedStatement pst = this.getCn().prepareStatement("UPDATE delivery SET idestado=2 WHERE iddelivery=?");
+            pst.setInt(1, iddel);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DeliveryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            this.Cerrar();
+        }
+    }
 
     public List<Delivery> listarEmpresa(int id,int idest) throws SQLException {
         List<Delivery> lista = null;

@@ -47,4 +47,18 @@ public class DeliveryBean {
             throw e;
         }
     }
+    
+    public void actualizaraProceso(int iddel) throws Exception{
+        DeliveryDAO dao = new DeliveryDAO();
+        try{
+            dao.actualizaraPro(iddel);
+        } catch(Exception e){
+            throw e;
+        }
+    }
+    
+    public void actualizaraFinalizado(){
+        
+        
+    }
 }
