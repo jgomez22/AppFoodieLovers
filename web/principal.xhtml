@@ -35,6 +35,9 @@
                     </div>
                     <p:separator /> 
                     <div class="row">
+                        <ui:repeat value="#{publicacionxProductoBean.list}" var="s">
+                            hola
+                        </ui:repeat>
                         <h:body>
                             <h:dataTable value="#{publicacionxProductoBean.list}" var="s">
                                 <h:column>

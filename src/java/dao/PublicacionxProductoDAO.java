@@ -22,7 +22,7 @@ public class PublicacionxProductoDAO extends dao {
         ResultSet rs;
         List<Publicacion_Plato> publicacion_Platos = new ArrayList<Publicacion_Plato>();
         this.Conectar();
-            PreparedStatement pst= this.getCn().prepareStatement("select e.idempresa,e.nombre,pu.nombre as publica,p.idproducto,p.nombre as plato,idpublicacion from publicacion_has_producto pp inner join publicacion pu on pp.publicacion_idpublicacion=pu.idpublicacion inner join empresa e on pp.publicacion_empresa_idempresa=e.idempresa inner join producto p on pp.producto_idproducto=p.idproducto");
+            PreparedStatement pst= this.getCn().prepareStatement("select e.idempresa,e.nombre,pu.nombre as publica,p.idproducto,p.nombre as plato,pu.idpublicacion from publicacionxproducto pp inner join publicacion pu on pp.idpublicacion=pu.idpublicacion inner join empresa e on pu.idempresa=e.idempresa inner join producto p on pp.idproducto=p.idproducto");
             rs=pst.executeQuery();
             
             while(rs.next()){

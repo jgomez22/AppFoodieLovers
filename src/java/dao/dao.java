@@ -21,7 +21,7 @@ public class dao {
     public void Conectar() throws SQLException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbrestauran", "root", "");
+            cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_foodielovers", "root", "");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(dao.class.getName()).log(Level.SEVERE, null, ex);
         }
