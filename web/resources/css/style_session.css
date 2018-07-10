@@ -240,3 +240,28 @@ form:after {
 	background-position: 0 -135px;
 	color: #00aeef;
 }
+div .publicacion_p {
+  padding: 0px;
+  margin: auto;
+  width: 960px;
+  border: red 0px none;
+}
+div .publicacion {
+  padding: 5px;
+  float: left;
+
+  margin: 0 auto;
+  height: 310px;
+  width: 310px;
+  border: black 5px solid;
+}
+
+div .publicacion p {
+  color: #ac2925;
+  font-size: 1em;
+}
+div .publicacion p a {
+  color: #ac2925;
+  font-size: 1em;
+  text-decoration: none 
+}

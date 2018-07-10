@@ -16,65 +16,52 @@
     <h:body>
         <ui:composition template="template.xhtml">
             <ui:define name="content">
+                <h:form class="form-inline">     
 
+                    <div class="container" style="margin-top: 90px">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2 align="center">Buscar Publicaciones"#{usuarioBean.mostrarUsu()}"</h2>
+                                <p:separator />
 
-                <div class="container" style="margin-top: 90px">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2 align="center">Buscar Publicaciones"#{usuarioBean.mostrarUsu()}"</h2>
-                            <p:separator />
-                            <h:form class="form-inline">
+                                <p:messages autoUpdate="true" showDetail="true"/>
                                 <div class="form-group">
-                                    <p:outputLabel value="Nombre" />
-                                    <p:inputText class="form-control" value="#{usuarioBean.usuario.nombre}" />
+                                    <p:outputLabel value="Plato" />
+                                    <p:inputText class="form-control" value="#{publicacionxProductoBean.publicacion_Plato.plato}" />
                                 </div>
-                                <p:commandButton class="btn btn-default" value="Grabar usuario" actionListener="#{usuarioBean.registrar()}"/>
+                                <p:commandButton class="btn btn-default" value="Buscar Plato" action="principal?faces-redirect=true"/>
 
-                            </h:form>
+
+                            </div>
+                        </div>
+                        <p:separator /> 
+                        <div class="container">
+                            <div class="row publicacion_p">
+                                <ui:repeat value="#{publicacionxProductoBean.list}" var="lis">
+
+                                    <div class="col-md-4 publicacion" >
+                                        <div class="row">
+                                            <div class="col-md-5 imagen_pu" >
+                                                <img src="resources/images/plato.jpg" width="120px" height="120px"/>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <p:outputLabel value="Empresa : " />
+                                                <p><p:outputLabel value="#{lis.empresa}" /></p>
+                                                <p:outputLabel value="Publicacion : " />
+                                                <p><p:outputLabel value="#{lis.comentario}" /></p>
+                                                <p:outputLabel value="#{lis.comentario}" />
+                                                <p:outputLabel value="Plato : " />
+                                                <p><p:outputLabel value="#{lis.plato}" /></p>
+                                                <p><a href="#">Ver mas</a> </p>   
+                                            </div>
+                                        </div>
+                                    </div>   
+
+                                </ui:repeat>
+                            </div>
                         </div>
                     </div>
-                    <p:separator /> 
-                    <div class="row">
-                        <ui:repeat value="#{publicacionxProductoBean.list}" var="s">
-                            hola
-                        </ui:repeat>
-                        <h:body>
-                            <h:dataTable value="#{publicacionxProductoBean.list}" var="s">
-                                <h:column>
-                                    <f:facet name="header">ID</f:facet>
-                                    #{s.id_puplicado}
-                                </h:column>
-                                
-                                <h:column>
-                                    <f:facet name="header">ID EMP</f:facet>
-                                    #{s.id_empresa}
-                                </h:column>
-                                
-                                <h:column>
-                                    <f:facet name="header">EMPRESA</f:facet>
-                                    #{s.empresa}
-                                </h:column>
-                                
-                                <h:column>
-                                    <f:facet name="header">COMENTARIO</f:facet>
-                                    #{s.comentario}
-                                </h:column>
-                                
-                                <h:column>
-                                    <f:facet name="header">ID PLATO</f:facet>
-                                    #{s.id_plato}
-                                </h:column>
-                                
-                                <h:column>
-                                    <f:facet name="header">PLATO</f:facet>
-                                    #{s.plato}
-                                </h:column>
-                                
-                                
-                            </h:dataTable>
-                        </h:body> 
-                    </div>
-                </div>
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>

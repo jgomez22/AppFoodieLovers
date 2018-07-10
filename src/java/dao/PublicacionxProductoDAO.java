@@ -17,12 +17,13 @@ import modelo.PublicacionxProducto;
 
 public class PublicacionxProductoDAO extends dao {
     
-    public List<Publicacion_Plato> ListaPublicacion() throws SQLException{
+    public List<Publicacion_Plato> ListaPublicacion(String plato) throws SQLException{
         Publicacion_Plato publicacion_Plato=null;
         ResultSet rs;
         List<Publicacion_Plato> publicacion_Platos = new ArrayList<Publicacion_Plato>();
         this.Conectar();
-            PreparedStatement pst= this.getCn().prepareStatement("select e.idempresa,e.nombre,pu.nombre as publica,p.idproducto,p.nombre as plato,pu.idpublicacion from publicacionxproducto pp inner join publicacion pu on pp.idpublicacion=pu.idpublicacion inner join empresa e on pu.idempresa=e.idempresa inner join producto p on pp.idproducto=p.idproducto");
+            PreparedStatement pst= this.getCn().prepareStatement("select e.idempresa,e.nombre,pu.nombre as publica,p.idproducto,p.nombre as plato,pu.idpublicacion from publicacionxproducto pp inner join publicacion pu on pp.idpublicacion=pu.idpublicacion inner join empresa e on pu.idempresa=e.idempresa inner join producto p on pp.idproducto=p.idproducto where p.nombre like '%" + plato + "%'");
+            //pst.setString(1, plato);
             rs=pst.executeQuery();
             
             while(rs.next()){
