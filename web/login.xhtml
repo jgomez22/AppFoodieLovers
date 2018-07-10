@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+    <h:head>
+        <title>INGRESO</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </h:head>
+    <h:body>
+        <ui:composition template="template.xhtml">
+            <ui:define name="content">
+
+
+                <div class="view">
+                    <div class="pages">
+                        <div class="container2">
+                            <section id="content">
+                                <h:form>
+                                    <h1>INICION DE SESION</h1>
+                                    <p:messages autoUpdate="true" showDetail="true"/>
+                                    <h:panelGrid>
+                                        <div>
+                                            <p:inputText placeholder="USUARIO" value="#{usuarioBean.usuario.correo}" required="true" id="username"/> 
+                                        </div>
+                                        <div>
+                                            <p:password placeholder="CONTRASEÑA" value="#{usuarioBean.usuario.contrasena}" required="true" id="password"/> 
+                                        </div>
+                                        <div>
+                                            <p:commandButton value="INICIAR SESIÓN" action="#{usuarioBean.iniciaSe()}"/>
+                                        </div>
+                                    </h:panelGrid>
+                                    <p:separator />
+                                    <div>
+
+                                        <a href="#">REGISTRAR</a>
+                                    </div>
+                                </h:form><!-- form -->
+                            </section><!-- content -->
+                        </div><!-- container -->
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
