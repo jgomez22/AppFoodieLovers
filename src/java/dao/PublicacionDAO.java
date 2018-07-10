@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Publicacion;
+import modelo.PublicacionxProducto;
+
 
 public class PublicacionDAO extends dao {
     
@@ -44,5 +46,23 @@ public class PublicacionDAO extends dao {
         }
         return lista;
     }
+     
+     public void registrar(Publicacion publicacion, List<PublicacionxProducto> pxp) throws SQLException{
+        try {
+            this.Conectar();
+            PreparedStatement pst;
+            pst = this.getCn().prepareStatement("insert into publicacion (nombre,horapublicacion, horacierre) values(?,?,?)");
+            pst.setString(1, publicacion.getNombre());
+            pst.setString(2, publicacion.getHorapublicacion());
+            pst.setString(3, publicacion.getHoracierre());
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(PublicacionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+        this.Cerrar();
+        }
+    }
+
     
 }

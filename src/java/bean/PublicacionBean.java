@@ -8,18 +8,18 @@ import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import modelo.Publicacion;
+import modelo.PublicacionxProducto;
 import dao.PublicacionDAO;
-
 
 @ManagedBean
 @RequestScoped
 public class PublicacionBean {
-    
+
     private Publicacion publicacion = new Publicacion();
     private List<Publicacion> lstPublicacion;
-    
-    
-    
+    private List<PublicacionxProducto> lstPublicacionxProducto;
+
+
     public List<Publicacion> listar() throws SQLException {
         PublicacionDAO dao = new PublicacionDAO();
         try {
@@ -28,6 +28,18 @@ public class PublicacionBean {
         } catch (SQLException e) {
             throw e;
         }
+    }
+
+    public void registrar() {
+        PublicacionDAO dao = new PublicacionDAO();
+        try {
+
+            dao.registrar(publicacion, lstPublicacionxProducto);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PublicacionBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     public Publicacion getPublicacion() {
@@ -45,7 +57,5 @@ public class PublicacionBean {
     public void setLstPublicacion(List<Publicacion> lstPublicacion) {
         this.lstPublicacion = lstPublicacion;
     }
-    
 
-    
 }
