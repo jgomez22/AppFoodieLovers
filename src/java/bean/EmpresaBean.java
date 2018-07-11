@@ -33,4 +33,15 @@ public class EmpresaBean {
         }
         return nombre;
     }
+
+    public void registrarEmpresa(int idu) throws Exception {
+
+        EmpresaDAO dao = new EmpresaDAO();
+        try {
+            dao.registrarEmpresa(empresa, idu);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EmpresaBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

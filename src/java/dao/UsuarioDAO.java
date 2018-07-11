@@ -77,4 +77,24 @@ public class UsuarioDAO extends dao {
         return usuario;
     }
 
+    public int validarCuentaRestaurant(int idu) throws SQLException {
+        int idem = 0;
+        ResultSet rs;
+        try {
+            this.Conectar();
+            PreparedStatement pst = this.getCn().prepareStatement("select idempresa from empresa where idusuario=?");
+            pst.setInt(1, idu);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                idem = rs.getInt("idempresa");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            this.Cerrar();
+        }
+        return idem;
+
+    }
 }

@@ -4,11 +4,11 @@ import dao.DeliveryDAO;
 import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import modelo.Delivery;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class DeliveryBean {
 
     private Delivery delivery = new Delivery();
@@ -30,35 +30,41 @@ public class DeliveryBean {
         this.lstDelivery = lstDelivery;
     }
 
-    public void listar(int id) throws SQLException {
+    public List<Delivery> listar(int id) throws SQLException {
         DeliveryDAO dao = new DeliveryDAO();
         try {
             lstDelivery = dao.listar(id);
         } catch (SQLException e) {
             throw e;
         }
+        return lstDelivery;
     }
     
-    public void listarEmpresa (int id, int idest) throws Exception{
+    public List<Delivery> listarEmpresa(int id, int idest) throws Exception {
         DeliveryDAO dao = new DeliveryDAO();
-        try{
+        try {
             lstDelivery = dao.listarEmpresa(id, idest);
-        } catch(Exception e){
+        } catch (Exception e) {
             throw e;
         }
+        return lstDelivery;
     }
     
-    public void actualizaraProceso(int iddel) throws Exception{
+    public void actualizaraProceso(int iddel) throws Exception {
         DeliveryDAO dao = new DeliveryDAO();
-        try{
-            dao.actualizaraPro(iddel);
-        } catch(Exception e){
+        try {
+            dao.actualizaraPro(iddel, 2);
+        } catch (Exception e) {
             throw e;
         }
     }
     
-    public void actualizaraFinalizado(){
-        
-        
+    public void actualizaraFinalizado(int iddel) throws Exception {
+        DeliveryDAO dao = new DeliveryDAO();
+        try {
+            dao.actualizaraPro(iddel, 3);
+        } catch (Exception e) {
+            throw e;
+        }
     }
 }

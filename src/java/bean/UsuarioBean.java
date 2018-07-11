@@ -15,6 +15,7 @@ import modelo.Usuario;
 @RequestScoped
 
 public class UsuarioBean {
+
     private Usuario usuario = new Usuario();
 
     public Usuario getUsuario() {
@@ -24,30 +25,29 @@ public class UsuarioBean {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
-    public void registrar(){
+
+    public void registrar() {
         UsuarioDAO dao = new UsuarioDAO();
-        
-        try {        
+
+        try {
             dao.registrar(usuario);
         } catch (Exception ex) {
             Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
-        }        
-        
+        }
+
     }
-    
-    public String obtenerNombre(int id){
-        String nombre="";
+
+    public String obtenerNombre(int id) {
+        String nombre = "";
         UsuarioDAO dao = new UsuarioDAO();
-        try{
-            nombre=dao.obtenerNombre(id);
-        } catch (Exception e){
+        try {
+            nombre = dao.obtenerNombre(id);
+        } catch (Exception e) {
             throw e;
         }
         return nombre;
     }
-    
-    
+
     public String iniciaSe() {
         String redireccion2 = "";
         try {
@@ -91,9 +91,30 @@ public class UsuarioBean {
 
         }
     }
-    public String mostrarUsu(){
-    Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-    return us.getNombre();
+
+    public String mostrarUsu() {
+        Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        return us.getNombre();
     }
-    
+
+    public int mostrarId() {
+        Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        return us.getIdusuario();
+    }
+
+    public String validarCuentaRestaurant() throws Exception {
+        Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        UsuarioDAO dao = new UsuarioDAO();
+        String red;
+        try {
+            if (dao.validarCuentaRestaurant(us.getIdusuario()) != 0) {
+                red = "home.xhtml";
+            } else {
+                red = "empresa_registrar.xhtml";
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return red;
+    }
 }
