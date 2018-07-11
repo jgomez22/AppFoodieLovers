@@ -26,15 +26,16 @@ public class UsuarioBean {
         this.usuario = usuario;
     }
 
-    public void registrar() {
+    public String registrar() {
         UsuarioDAO dao = new UsuarioDAO();
 
         try {
             dao.registrar(usuario);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario registrado correctamente", ""));
         } catch (Exception ex) {
             Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        return "usuario_registrar.xhtml";
     }
 
     public String obtenerNombre(int id) {

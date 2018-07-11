@@ -39,7 +39,7 @@
                                     <h2 align="center">Servicios - Proceso <h:outputLabel value="" ></h:outputLabel></h2>
 
                                     <h:form>
-
+                                        <p:messages autoUpdate="true" showDetail="true"/>
                                         <p:commandButton class="btn btn-default right" value="Actualizar" actionListener="#{deliveryBean.listarEmpresa(usuarioBean.mostrarId(),2)}" update="data" />
 
                                         <h:dataTable class="table table-responsive" id="data" value="#{deliveryBean.listarEmpresa(usuarioBean.mostrarId(),2)}" var="delivery">

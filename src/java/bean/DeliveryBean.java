@@ -3,8 +3,10 @@ package bean;
 import dao.DeliveryDAO;
 import java.sql.SQLException;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import modelo.Delivery;
 
 @ManagedBean
@@ -50,21 +52,27 @@ public class DeliveryBean {
         return lstDelivery;
     }
     
-    public void actualizaraProceso(int iddel) throws Exception {
+    public String actualizaraProceso(int iddel) throws Exception {
         DeliveryDAO dao = new DeliveryDAO();
+        String red;
         try {
             dao.actualizaraPro(iddel, 2);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se actualizo el estado", ""));
         } catch (Exception e) {
             throw e;
         }
+        return "empresa_servicios_inicio.xhtml";
     }
     
-    public void actualizaraFinalizado(int iddel) throws Exception {
+    public String actualizaraFinalizado(int iddel) throws Exception {
         DeliveryDAO dao = new DeliveryDAO();
+        String red;
         try {
             dao.actualizaraPro(iddel, 3);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se actualizo el estado", ""));
         } catch (Exception e) {
             throw e;
         }
+        return "empresa_servicio_proceso.xhtml";
     }
 }

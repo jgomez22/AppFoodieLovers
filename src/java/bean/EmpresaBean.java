@@ -5,8 +5,10 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import modelo.Empresa;
 
 @ManagedBean
@@ -34,14 +36,15 @@ public class EmpresaBean {
         return nombre;
     }
 
-    public void registrarEmpresa(int idu) throws Exception {
+    public String registrarEmpresa(int idu) throws Exception {
 
         EmpresaDAO dao = new EmpresaDAO();
         try {
             dao.registrarEmpresa(empresa, idu);
-
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se configuro su cuenta de Restaurante", ""));
         } catch (SQLException ex) {
             Logger.getLogger(EmpresaBean.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return "empresa_registrar.xhtml";
     }
 }
