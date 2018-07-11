@@ -38,7 +38,7 @@ public class UsuarioBean {
         return "usuario_registrar.xhtml";
     }
 
-    public String obtenerNombre(int id) {
+    public String obtenerNombre(int id) throws Exception {
         String nombre = "";
         UsuarioDAO dao = new UsuarioDAO();
         try {
@@ -101,6 +101,17 @@ public class UsuarioBean {
     public int mostrarId() {
         Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
         return us.getIdusuario();
+    }
+
+    public int obtenerIdEmpresa(int idusu) throws Exception {
+        UsuarioDAO dao = new UsuarioDAO();
+        int idemp;
+        try{
+            idemp = dao.obtenerIdEmpresa(idusu);
+        }catch(Exception e){
+            throw e;
+        }
+        return idemp;
     }
 
     public String validarCuentaRestaurant() throws Exception {

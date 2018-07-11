@@ -11,7 +11,7 @@ import modelo.Usuario;
 
 public class UsuarioDAO extends dao {
 
-    public String obtenerNombre(int id) {
+    public String obtenerNombre(int id) throws SQLException {
         String nombre = null;
         ResultSet rs;
 
@@ -27,9 +27,36 @@ public class UsuarioDAO extends dao {
 
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            this.Cerrar();
         }
 
         return nombre;
+    }
+
+    public int obtenerIdEmpresa(int idusu) throws SQLException {
+        int idemp = 0;
+        ResultSet rs;
+
+        try {
+            this.Conectar();
+            PreparedStatement pst;
+            pst = this.getCn().prepareStatement("SELECT e.idempresa idempresa FROM usuario u, empresa e "
+                    + "WHERE e.idusuario=u.idusuario AND u.idusuario=?");
+            pst.setInt(1, idusu);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                idemp = rs.getInt("idempresa");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            this.Cerrar();
+        }
+
+        return idemp;
     }
 
     public void registrar(Usuario u) throws SQLException {

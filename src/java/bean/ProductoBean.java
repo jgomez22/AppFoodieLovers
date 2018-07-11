@@ -9,6 +9,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import modelo.Producto;
 import dao.ProductoDAO;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @RequestScoped
@@ -41,7 +43,6 @@ public class ProductoBean {
             throw e;
         }
     }*/
-    
     public List<Producto> listar(int idusu) throws SQLException {
         ProductoDAO dao = new ProductoDAO();
         try {
@@ -61,5 +62,16 @@ public class ProductoBean {
             throw e;
         }
         return nombre;
+    }
+
+    public String registrarProducto(int idemp) throws Exception {
+        ProductoDAO dao = new ProductoDAO();
+        try {
+            dao.registrarProducto(producto,idemp);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se registro producto", ""));
+        } catch (Exception e) {
+            throw e;
+        }
+        return "producto_nuevo.xhtml";
     }
 }

@@ -62,4 +62,23 @@ public class ProductoDAO extends dao {
         return lista;
     }
 
+    public void registrarProducto(Producto pro, int idemp) throws SQLException {
+        try {
+            this.Conectar();
+            PreparedStatement pst;
+            pst = this.getCn().prepareStatement("INSERT INTO producto (nombre,precio,delivery,reserva,idempresa) "
+                    + "VALUES (?,?,?,?,?)");
+            pst.setString(1, pro.getNombre());
+            pst.setDouble(2, pro.getPrecio());
+            pst.setInt(3, pro.getDelivery());
+            pst.setInt(4, pro.getReserva());
+            pst.setInt(5, idemp);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            this.Cerrar();
+        }
+    }
+
 }
