@@ -30,13 +30,15 @@ public class ProductoDAO extends dao {
         return nombre;
     }
 
-    public List<Producto> listar() throws SQLException {
+    public List<Producto> listar(int idusu) throws SQLException {
         List<Producto> lista = null;
         ResultSet rs;
 
         try {
             this.Conectar();
-            PreparedStatement pst = this.getCn().prepareStatement("SELECT idproducto, nombre, precio, delivery, reserva, imagen,idempresa FROM producto");
+            PreparedStatement pst = this.getCn().prepareStatement("SELECT p.idproducto, p.nombre, p.precio, p.delivery, p.reserva, p.imagen,p. idempresa FROM producto p, empresa em "
+                    + "WHERE p.idempresa=em.idempresa AND em.idusuario=?");
+            pst.setInt(1, idusu);
             rs = pst.executeQuery();
             lista = new ArrayList();
 

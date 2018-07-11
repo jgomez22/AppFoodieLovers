@@ -33,19 +33,19 @@ public class ProductoBean {
         this.lstProducto = lstProducto;
     }
 
-    public void lista() throws SQLException {
+    /*public void lista() throws SQLException {
         ProductoDAO dao = new ProductoDAO();
         try {
             lstProducto = dao.listar();
         } catch (SQLException e) {
             throw e;
         }
-    }
+    }*/
     
-    public List<Producto> listar() throws SQLException {
+    public List<Producto> listar(int idusu) throws SQLException {
         ProductoDAO dao = new ProductoDAO();
         try {
-            lstProducto = dao.listar();
+            lstProducto = dao.listar(idusu);
             return lstProducto;
         } catch (SQLException e) {
             throw e;
