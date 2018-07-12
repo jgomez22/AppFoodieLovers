@@ -15,6 +15,7 @@ import modelo.Usuario;
 @RequestScoped
 
 public class UsuarioBean {
+
     private Usuario usuario = new Usuario();
 
     public Usuario getUsuario() {
@@ -24,30 +25,29 @@ public class UsuarioBean {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
-    public void registrar(){
+
+    public void registrar() {
         UsuarioDAO dao = new UsuarioDAO();
-        
-        try {        
+
+        try {
             dao.registrar(usuario);
         } catch (Exception ex) {
             Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
-        }        
-        
+        }
+
     }
-    
-    public String obtenerNombre(int id){
-        String nombre="";
+
+    public String obtenerNombre(int id) {
+        String nombre = "";
         UsuarioDAO dao = new UsuarioDAO();
-        try{
-            nombre=dao.obtenerNombre(id);
-        } catch (Exception e){
+        try {
+            nombre = dao.obtenerNombre(id);
+        } catch (Exception e) {
             throw e;
         }
         return nombre;
     }
-    
-    
+
     public String iniciaSe() {
         String redireccion2 = "";
         try {
@@ -73,27 +73,33 @@ public class UsuarioBean {
         return redireccion2;
     }
 
-    public void verificarSession() {
+    public Boolean verificarSession() {
+        Boolean estado;
         try {
             Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
             if (us == null) {
-
+                estado = true;
+            } else {
+                estado =false;
             }
         } catch (Exception e) {
-
+            estado = true;
         }
+        return estado;
     }
 
-    public void CerrarSession() {
-        try {
-            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        } catch (Exception e) {
+    public void cerrarSession() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+    }
 
+    public String mostrarUsu() {
+        Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        if (us == null) {
+            return "Falta logearse";
+        } else {
+            return us.getNombre();
         }
+        
     }
-    public String mostrarUsu(){
-    Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-    return us.getNombre();
-    }
-    
+
 }

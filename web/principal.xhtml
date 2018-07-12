@@ -27,39 +27,41 @@
                                 <p:messages autoUpdate="true" showDetail="true"/>
                                 <div class="form-group">
                                     <p:outputLabel value="Plato" />
-                                    <p:inputText class="form-control" value="#{publicacionxProductoBean.publicacion_Plato.plato}" />
+                                    <p:inputText class="form-control" value="#{publicacionxProductoBean.plato_}" />
                                 </div>
-                                <p:commandButton class="btn btn-default" value="Buscar Plato" action="principal?faces-redirect=true"/>
+                                <p:commandButton class="btn btn-default" value="Buscar Plato" update="grid"/>
 
 
                             </div>
                         </div>
                         <p:separator /> 
-                        <div class="container">
-                            <div class="row publicacion_p">
-                                <ui:repeat value="#{publicacionxProductoBean.list}" var="lis">
+                        <p:panelGrid id="grid" >
+                            <div class="container">
+                                <div class="row publicacion_p">
+                                    <ui:repeat value="#{publicacionxProductoBean.list}" var="lis">
 
-                                    <div class="col-md-4 publicacion" >
-                                        <div class="row">
-                                            <div class="col-md-5 imagen_pu" >
-                                                <img src="resources/images/plato.jpg" width="120px" height="120px"/>
+                                        <div class="col-md-4 publicacion" >
+                                            <div class="row">
+                                                <div class="col-md-5 imagen_pu" >
+                                                    <img src="resources/images/plato.jpg" width="120px" height="120px"/>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <p:outputLabel value="Empresa : " />
+                                                    <p><p:outputLabel value="#{lis.empresa}" /></p>
+                                                    <p:outputLabel value="Publicacion : " />
+                                                    <p><p:outputLabel value="#{lis.comentario}" /></p>
+                                                    <p:outputLabel value="#{lis.comentario}" />
+                                                    <p:outputLabel value="Plato : " />
+                                                    <p><p:outputLabel value="#{lis.plato}" /></p>
+                                                    <p><h:form ><p:commandButton value="mas..." action="verpublicacion.xhtml?faces-redirect=true" disabled="#{usuarioBean.verificarSession()}"/></h:form> </p>   
+                                                </div>
                                             </div>
-                                            <div class="col-md-7">
-                                                <p:outputLabel value="Empresa : " />
-                                                <p><p:outputLabel value="#{lis.empresa}" /></p>
-                                                <p:outputLabel value="Publicacion : " />
-                                                <p><p:outputLabel value="#{lis.comentario}" /></p>
-                                                <p:outputLabel value="#{lis.comentario}" />
-                                                <p:outputLabel value="Plato : " />
-                                                <p><p:outputLabel value="#{lis.plato}" /></p>
-                                                <p><a href="#">Ver mas</a> </p>   
-                                            </div>
-                                        </div>
-                                    </div>   
+                                        </div>   
 
-                                </ui:repeat>
+                                    </ui:repeat>
+                                </div>
                             </div>
-                        </div>
+                        </p:panelGrid>
                     </div>
                 </h:form>
             </ui:define>

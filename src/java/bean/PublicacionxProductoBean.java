@@ -18,7 +18,16 @@ import modelo.PublicacionxProducto;
 @RequestScoped
 public class PublicacionxProductoBean {
 
+    private String plato_="";     
     private Publicacion_Plato publicacion_Plato = new Publicacion_Plato();
+
+    public String getPlato_() {
+        return plato_;
+    }
+
+    public void setPlato_(String plato_) {
+        this.plato_ = plato_;
+    }
 
     public Publicacion_Plato getPublicacion_Plato() {
         return publicacion_Plato;
@@ -32,7 +41,7 @@ public class PublicacionxProductoBean {
     List<Publicacion_Plato> list = new ArrayList<Publicacion_Plato>();
 
     public List<Publicacion_Plato> getList() throws SQLException {
-        publicacion_Plato.setPlato("");
+        publicacion_Plato.setPlato(plato_);
 
         list = query.ListaPublicacion(publicacion_Plato.getPlato());
         return list;
