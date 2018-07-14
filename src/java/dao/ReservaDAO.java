@@ -11,6 +11,27 @@ import modelo.Reserva;
 
 public class ReservaDAO extends dao {
 
+    public void registrar(int cantidad, double total, String hora, String det, int id_us, int id_pro) throws SQLException{
+        try {
+            this.Conectar();
+            PreparedStatement pst;
+            pst = this.getCn().prepareStatement("INSERT INTO reserva (cantidad,hora_llegada,importe_total,detalles,idproducto,idusuario,idestado) "
+                    + "VALUES (?,?,?,?,?,?,?)");
+            pst.setInt(1,cantidad);
+            pst.setString(2,hora);
+            pst.setDouble(3,total);
+            pst.setString(4, det);
+            pst.setInt(5,id_pro);
+            pst.setInt(6,id_us);
+            pst.setInt(7,1);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            this.Cerrar();
+        }
+    }
+    
     public void actualizaraPro(int idres, int nest) throws SQLException {
         try {
             this.Conectar();

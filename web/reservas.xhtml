@@ -19,27 +19,34 @@
                 <div class="container">
                     <div class="row caja_publicacion">
                         <div class="col-md-12" align="center">
-                            <H1>#{publicacionBean.op_emp()}</H1>
+                            <H1>RESERVA</H1>
                         </div>
                         <div class="col-md-6 caja_publicacion_i">
                             <img src="resources/images/user.png" width="250px" height="250px"/>
                             <H2 align="center">#{publicacionBean.op_plato()}</H2>
                         </div>
                         <div class="col-md-6 caja_publicacion_e">
-                            <P>#{publicacionBean.op_Dir()}</P>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
                             <h:form>
-                                <div>
-                                    <h2><h:commandLink value="Delivery "  action="deliverys.xhtml?faces-redirect=true" disabled="#{publicacionBean.op_Del()}"></h:commandLink></h2>
-                                    <h2><h:commandLink value=" Reserva"  action="reservas.xhtml?faces-redirect=true" disabled="#{publicacionBean.op_Res()}"></h:commandLink></h2>
+                                <p:messages autoUpdate="true" showDetail="true"/>
+                                <div class="form-group">
+                                    <p:outputLabel value="Cantidad" />
+                                    <p:inputText class="form-control" value="#{reservaBean.cant_cli}"/>
                                 </div>
-                            </h:form><!-- form -->
+                                <div class="form-group">
+                                    <p:outputLabel value="Hora Llegada" />
+                                    <p:inputText class="form-control" value="#{reservaBean.hor_cli}" />
+                                </div>
+                                <div class="form-group">
+                                    <p:outputLabel value="Detalle" />
+                                    <p:inputText class="form-control" value="#{reservaBean.det_cli}" />
+                                </div>
+                                <div class="form-group">
+                                    <p:outputLabel value="Importe" />
+                                    <p:inputText class="form-control" value="#{publicacionBean.op_precio()}" disabled="true" />
+                                </div>
+                                <p:commandButton class="btn btn-primary" value="Registrar" actionListener="#{reservaBean.registrar()}" action="principal.xhtml?faces-redirect=true"/>
+
+                            </h:form>
                         </div>
                     </div>
                 </div>

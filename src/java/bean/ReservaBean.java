@@ -8,10 +8,59 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import modelo.Reserva;
+import modelo.Usuario;
 
 @ManagedBean
 @ViewScoped
 public class ReservaBean {
+    
+    private int cant_cli;
+    private String hor_cli;
+    private String det_cli;
+
+    public int getCant_cli() {
+        return cant_cli;
+    }
+
+    public void setCant_cli(int cant_cli) {
+        this.cant_cli = cant_cli;
+    }
+
+    public String getHor_cli() {
+        return hor_cli;
+    }
+
+    public void setHor_cli(String hor_cli) {
+        this.hor_cli = hor_cli;
+    }
+
+    public String getDet_cli() {
+        return det_cli;
+    }
+
+    public void setDet_cli(String det_cli) {
+        this.det_cli = det_cli;
+    }
+    
+    public void registrar() throws Exception{
+        double total,precio;
+        int id_us,id_pro;
+        ReservaDAO dao = new ReservaDAO();
+        precio = (Double) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("precio");
+        id_us = mostrarId();
+        id_pro = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("id_pro");
+        total=cant_cli*precio;
+        try{
+            dao.registrar(cant_cli,total,hor_cli,det_cli,id_us,id_pro);
+        } catch(Exception e ){
+            throw e;
+        }
+    }
+    
+    public int mostrarId(){
+        Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        return us.getIdusuario();
+    }
 
     private Reserva reserva = new Reserva();
     private List<Reserva> lstReserva;
