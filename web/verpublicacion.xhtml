@@ -19,17 +19,24 @@
                 <div class="container">
                     <div class="row caja_publicacion">
                         <div class="col-md-12" align="center">
-                            <H1>sasasa</H1>
+                            <H1>#{publicacionBean.op_emp()}</H1>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 caja_publicacion_i">
                             <img src="resources/images/user.png" width="250px" height="250px"/>
                         </div>
-                        <div class="col-md-6">
-                            <P>#{publicacionBean.op_emp()}</P>
+                        <div class="col-md-6 caja_publicacion_e">
+                            <P>#{publicacionBean.op_Dir()}</P>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
                             <h:form>
                                 <div>
-                                    <p:commandButton value="DELIVERI" action="#{usuarioBean.iniciaSe()}"/>
-                                    <p:commandButton value="RESERVA" action="#{usuarioBean.iniciaSe()}"/>
+                                    <h2><h:commandLink value="Delivery "  action="verpublicacion.xhtml?faces-redirect=true" disabled="#{publicacionBean.op_Del()}"></h:commandLink></h2>
+                                    <h2><h:commandLink value=" Reserva"  action="verpublicacion.xhtml?faces-redirect=true" disabled="#{publicacionBean.op_Res()}"></h:commandLink></h2>
                                 </div>
                             </h:form><!-- form -->
                         </div>

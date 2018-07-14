@@ -103,6 +103,31 @@ public class PublicacionBean {
         }
     }
     
+    public boolean op_Del() {
+        String del = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("delivery");
+        if (del != null) {
+            if(del.equals("0")){
+                return true;
+            }else{
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    
+    public boolean op_Res() {
+        String del = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("reserva");
+        if (del != null) {
+            if(del.equals("0")){
+                return true;
+            }else{
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
     public List<Publicacion> listar() throws SQLException {
         PublicacionDAO dao = new PublicacionDAO();
         try {
