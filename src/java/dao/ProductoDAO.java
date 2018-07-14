@@ -30,13 +30,15 @@ public class ProductoDAO extends dao {
         return nombre;
     }
 
-    public List<Producto> listar() throws SQLException {
+    public List<Producto> listar(int idusu) throws SQLException {
         List<Producto> lista = null;
         ResultSet rs;
 
         try {
             this.Conectar();
-            PreparedStatement pst = this.getCn().prepareStatement("SELECT idproducto, nombre, precio, delivery, reserva, imagen,idempresa FROM producto");
+            PreparedStatement pst = this.getCn().prepareStatement("SELECT p.idproducto, p.nombre, p.precio, p.delivery, p.reserva, p.imagen,p. idempresa FROM producto p, empresa em "
+                    + "WHERE p.idempresa=em.idempresa AND em.idusuario=?");
+            pst.setInt(1, idusu);
             rs = pst.executeQuery();
             lista = new ArrayList();
 
@@ -58,6 +60,25 @@ public class ProductoDAO extends dao {
             this.Cerrar();
         }
         return lista;
+    }
+
+    public void registrarProducto(Producto pro, int idemp) throws SQLException {
+        try {
+            this.Conectar();
+            PreparedStatement pst;
+            pst = this.getCn().prepareStatement("INSERT INTO producto (nombre,precio,delivery,reserva,idempresa) "
+                    + "VALUES (?,?,?,?,?)");
+            pst.setString(1, pro.getNombre());
+            pst.setDouble(2, pro.getPrecio());
+            pst.setInt(3, pro.getDelivery());
+            pst.setInt(4, pro.getReserva());
+            pst.setInt(5, idemp);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            this.Cerrar();
+        }
     }
 
 }

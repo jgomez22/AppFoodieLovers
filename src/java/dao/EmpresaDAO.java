@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Empresa;
 
-public class EmpresaDAO extends dao{
+public class EmpresaDAO extends dao {
 
     public String obtenerNombre(int id) {
         String nombre = null;
@@ -30,5 +30,25 @@ public class EmpresaDAO extends dao{
             Logger.getLogger(EmpresaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return nombre;
+    }
+
+    public void registrarEmpresa(Empresa emp, int idusu) throws SQLException {
+        try {
+            this.Conectar();
+            PreparedStatement pst;
+            pst = this.getCn().prepareStatement("INSERT INTO empresa (nombre, direccion, descripcion, telefono, delivery, reservar, idusuario) VALUES (?, ?, ?, ?, ?, ?, ?);");
+            pst.setString(1, emp.getNombre());
+            pst.setString(2, emp.getDireccion());
+            pst.setString(3, emp.getDescripcion());
+            pst.setInt(4, emp.getTelefono());
+            pst.setInt(5, emp.getDelivery());
+            pst.setInt(6, emp.getReserva());
+            pst.setInt(7, idusu);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(EmpresaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            this.Cerrar();
+        }
     }
 }

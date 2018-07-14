@@ -18,11 +18,20 @@
             <ui:define name="content">
                 <div class="container">
                     <div class="row caja_publicacion">
-                        <div class="col-md-6">
-                            <img src="resources/images/user.png" width="300px" height="300px"/>
+                        <div class="col-md-12" align="center">
+                            <H1>sasasa</H1>
                         </div>
                         <div class="col-md-6">
-                            
+                            <img src="resources/images/user.png" width="250px" height="250px"/>
+                        </div>
+                        <div class="col-md-6">
+                            <P>#{publicacionBean.op_emp()}</P>
+                            <h:form>
+                                <div>
+                                    <p:commandButton value="DELIVERI" action="#{usuarioBean.iniciaSe()}"/>
+                                    <p:commandButton value="RESERVA" action="#{usuarioBean.iniciaSe()}"/>
+                                </div>
+                            </h:form><!-- form -->
                         </div>
                     </div>
                 </div>

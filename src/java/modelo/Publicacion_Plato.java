@@ -16,7 +16,33 @@ public class Publicacion_Plato {
     private int id_empresa;
     private String empresa;
     private int id_puplicado;
+    private String direccion;
+    private String est_delivery;
+    private String est_reserva;
 
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getEst_delivery() {
+        return est_delivery;
+    }
+
+    public void setEst_delivery(String est_delivery) {
+        this.est_delivery = est_delivery;
+    }
+
+    public String getEst_reserva() {
+        return est_reserva;
+    }
+
+    public void setEst_reserva(String est_reserva) {
+        this.est_reserva = est_reserva;
+    }
     public Publicacion_Plato() {
     }
 

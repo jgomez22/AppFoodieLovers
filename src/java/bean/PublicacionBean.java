@@ -8,17 +8,100 @@ import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import modelo.Publicacion;
+import modelo.PublicacionxProducto;
 import dao.PublicacionDAO;
-
+import java.util.ArrayList;
+import javax.faces.context.FacesContext;
+import modelo.Publicacion_Plato;
 
 @ManagedBean
 @RequestScoped
 public class PublicacionBean {
-    
+
+    private String Empresa;
+    private String Direccion;
+    private String Delivery;
+    private String Reserva;
+
     private Publicacion publicacion = new Publicacion();
     private List<Publicacion> lstPublicacion;
+    private List<PublicacionxProducto> lstPublicacionxProducto;
+    
+    List<Publicacion_Plato> list = new ArrayList<Publicacion_Plato>();
+
+    public List<Publicacion_Plato> getList() {
+        return list;
+    }
+
+    public void setList(List<Publicacion_Plato> list) {
+        this.list = list;
+    }
+    
+   
+    
+    public String getEmpresa() {
+        return Empresa;
+    }
+
+    public void setEmpresa(String Empresa) {
+        this.Empresa = Empresa;
+    }
+
+    public String getDireccion() {
+        return Direccion;
+    }
+
+    public void setDireccion(String Direccion) {
+        this.Direccion = Direccion;
+    }
+
+    public String getDelivery() {
+        return Delivery;
+    }
+
+    public void setDelivery(String Delivery) {
+        this.Delivery = Delivery;
+    }
+
+    public String getReserva() {
+        return Reserva;
+    }
+
+    public void setReserva(String Reserva) {
+        this.Reserva = Reserva;
+    }
+
+    public void guardarDatos(String Empresa, String Direccion, String Delivery, String Reserva) {
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("empresa", Empresa);
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("direccion", Direccion);
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("delivery", Delivery);
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("reserva", Reserva);
+        this.Empresa = Empresa;
+        this.Direccion = Direccion;
+        this.Delivery = Delivery;
+        this.Reserva = Reserva;
+    }
+
     
     
+    
+    public String op_emp() {
+        String emp = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("empresa");
+        if (emp != null) {
+            return emp;
+        } else {
+            return "";
+        }
+    }
+    
+    public String op_Dir() {
+        String emp = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("direccion");
+        if (emp != null) {
+            return emp;
+        } else {
+            return "";
+        }
+    }
     
     public List<Publicacion> listar() throws SQLException {
         PublicacionDAO dao = new PublicacionDAO();
@@ -28,6 +111,18 @@ public class PublicacionBean {
         } catch (SQLException e) {
             throw e;
         }
+    }
+
+    public void registrar() {
+        PublicacionDAO dao = new PublicacionDAO();
+        try {
+
+            dao.registrar(publicacion, lstPublicacionxProducto);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PublicacionBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     public Publicacion getPublicacion() {
@@ -45,7 +140,5 @@ public class PublicacionBean {
     public void setLstPublicacion(List<Publicacion> lstPublicacion) {
         this.lstPublicacion = lstPublicacion;
     }
-    
 
-    
 }

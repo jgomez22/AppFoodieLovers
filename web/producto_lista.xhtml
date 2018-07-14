@@ -22,8 +22,11 @@
                                 <div class="col-md-12 column " style="margin-bottom: 30px">
                                     <ul class="nav nav-pills nav-stacked">
                                         <li><a href="home.xhtml"><span class="glyphicon glyphicon-chevron-right"></span> Home</a></li>
-                                        <li ><a href="publicacion_lista.xhtml"><span class="glyphicon glyphicon-chevron-right"></span>Publicaciones</a></li>
+                                        <li ><a href="publicacion_lista.xhtml"><span class="glyphicon glyphicon-chevron-right"></span>Publicacion</a></li>
                                         <li class="active"  ><a href=""><span class="glyphicon glyphicon-chevron-right"></span>Productos</a></li>
+                                        <li><a href="empresa_servicios_inicio.xhtml"><span class="glyphicon glyphicon-chevron-right"></span>Servicio Inicio</a></li>
+                                        <li><a href="empresa_servicios_proceso.xhtml"><span class="glyphicon glyphicon-chevron-right"></span>Servicio Proceso</a></li>
+                                        <li><a href="empresa_servicios_finalizado.xhtml"><span class="glyphicon glyphicon-chevron-right"></span>Servicio Finalizado</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -35,12 +38,12 @@
                                     <button type="submit"  style="margin-right:0px" class="btn btn-default">Buscar</button>
                                 </div>
                                 <div class="col-md-2 form-group ">
-                                    <button type="submit" style="margin-left:0px" class="btn btn-default">Nuevo</button>
+                                    <a href="producto_nuevo.xhtml"><button type="submit" style="margin-left:0px" class="btn btn-default">Nuevo</button></a>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12" style="padding:5px">
                                         <h:form>
-                                            <h:dataTable class="table table-responsive" id="data" value="#{productoBean.listar()}" var="producto">
+                                            <h:dataTable class="table table-responsive" id="data" value="#{productoBean.listar(usuarioBean.mostrarId())}" var="producto">
                                                 <h:column>
                                                     <f:facet name="header">
                                                         <h:outputText value="Id"></h:outputText>
@@ -61,7 +64,7 @@
                                                     </f:facet>
                                                     <h:outputText value="#{producto.precio}"></h:outputText>
                                                 </h:column>
-                                                
+
                                                 <h:column>
                                                     <f:facet name="header">
                                                         <h:outputText value="Acciones"></h:outputText>

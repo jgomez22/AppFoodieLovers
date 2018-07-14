@@ -266,9 +266,4 @@ div .publicacion p a {
   text-decoration: none 
 }
 
-div .caja_publicacion {
-  padding: 0px;
-  margin: auto;
-  width: 960px;
-  border: red 0px none;
-}
+div .caja_publicacion { margin: 200px auto; position: relative; width: 960px; }

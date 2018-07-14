@@ -31,13 +31,14 @@ public class UsuarioBean {
 
         try {
             dao.registrar(usuario);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario registrado correctamente", ""));
         } catch (Exception ex) {
             Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
-    public String obtenerNombre(int id) {
+    public String obtenerNombre(int id) throws Exception {
         String nombre = "";
         UsuarioDAO dao = new UsuarioDAO();
         try {
@@ -80,7 +81,7 @@ public class UsuarioBean {
             if (us == null) {
                 estado = true;
             } else {
-                estado =false;
+                estado = false;
             }
         } catch (Exception e) {
             estado = true;
@@ -99,7 +100,39 @@ public class UsuarioBean {
         } else {
             return us.getNombre();
         }
-        
+
+    }
+
+    public int mostrarId() {
+        Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        return us.getIdusuario();
+    }
+
+    public int obtenerIdEmpresa(int idusu) throws Exception {
+        UsuarioDAO dao = new UsuarioDAO();
+        int idemp;
+        try {
+            idemp = dao.obtenerIdEmpresa(idusu);
+        } catch (Exception e) {
+            throw e;
+        }
+        return idemp;
+    }
+
+    public String validarCuentaRestaurant() throws Exception {
+        Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        UsuarioDAO dao = new UsuarioDAO();
+        String red;
+        try {
+            if (dao.validarCuentaRestaurant(us.getIdusuario()) != 0) {
+                red = "home.xhtml";
+            } else {
+                red = "empresa_registrar.xhtml";
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return red;
     }
 
 }

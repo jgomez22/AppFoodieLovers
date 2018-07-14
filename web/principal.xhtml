@@ -36,9 +36,9 @@
                         </div>
                         <p:separator /> 
                         <p:panelGrid id="grid" >
-                            <div class="container">
+                            <div class="container" id="ff">
                                 <div class="row publicacion_p">
-                                    <ui:repeat value="#{publicacionxProductoBean.list}" var="lis">
+                                    <ui:repeat value="#{publicacionxProductoBean.list}" var="lis" >
 
                                         <div class="col-md-4 publicacion" >
                                             <div class="row">
@@ -47,13 +47,13 @@
                                                 </div>
                                                 <div class="col-md-7">
                                                     <p:outputLabel value="Empresa : " />
-                                                    <p><p:outputLabel value="#{lis.empresa}" /></p>
+                                                    <p>#{lis.empresa}</p>
                                                     <p:outputLabel value="Publicacion : " />
-                                                    <p><p:outputLabel value="#{lis.comentario}" /></p>
-                                                    <p:outputLabel value="#{lis.comentario}" />
-                                                    <p:outputLabel value="Plato : " />
-                                                    <p><p:outputLabel value="#{lis.plato}" /></p>
-                                                    <p><h:form ><p:commandButton value="mas..." action="verpublicacion.xhtml?faces-redirect=true" disabled="#{usuarioBean.verificarSession()}"/></h:form> </p>   
+                                                    <p>#{lis.comentario}</p>
+                                                     <p:outputLabel value="Plato : " />
+                                                    <p>#{lis.plato}</p>
+                                                    <p><h:form ><p:commandButton value="mas..."  action="verpublicacion.xhtml?faces-redirect=true" disabled="#{usuarioBean.verificarSession()}"/></h:form> </p> 
+                                                    <p><h:form ><a href="verpublicacion.xhtml?faces-redirect=true" onclick="#{publicacionBean.guardarDatos(lis.empresa, lis.direccion,lis.est_delivery, lis.est_reserva)}" >Mas...</a></h:form> </p>  
                                                 </div>
                                             </div>
                                         </div>   
@@ -67,4 +67,7 @@
             </ui:define>
         </ui:composition>
     </h:body>
+    <script>
+        
+    </script>
 </html>
