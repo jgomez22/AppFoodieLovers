@@ -17,7 +17,38 @@
         <ui:composition template="template.xhtml">
             <ui:define name="content">
                 <div class="container">
-                    
+                    <div class="row caja_publicacion">
+                        <div class="col-md-12" align="center">
+                            <H1>DELIVERY</H1>
+                        </div>
+                        <div class="col-md-6 caja_publicacion_i">
+                            <img src="resources/images/user.png" width="250px" height="250px"/>
+                            <H2 align="center">#{publicacionBean.op_plato()}</H2>
+                        </div>
+                        <div class="col-md-6 caja_publicacion_e">
+                            <h:form>
+                                <p:messages autoUpdate="true" showDetail="true"/>
+                                <div class="form-group">
+                                    <p:outputLabel value="Cantidad" />
+                                    <p:inputText class="form-control" value="#{deliveryBean.cant_cli}"/>
+                                </div>
+                                <div class="form-group">
+                                    <p:outputLabel value="Direccion" />
+                                    <p:inputText class="form-control" value="#{deliveryBean.dir_cli}" />
+                                </div>
+                                <div class="form-group">
+                                    <p:outputLabel value="Detalle" />
+                                    <p:inputText class="form-control" value="#{deliveryBean.det_cli}" />
+                                </div>
+                                <div class="form-group">
+                                    <p:outputLabel value="Importe" />
+                                    <p:inputText class="form-control" value="#{publicacionBean.op_precio()}" disabled="true" />
+                                </div>
+                                <p:commandButton class="btn btn-primary" value="Registrar" actionListener="#{deliveryBean.registrar()}" action="principal.xhtml?faces-redirect=true"/>
+
+                            </h:form>
+                        </div>
+                    </div>
                 </div>
             </ui:define>
         </ui:composition>

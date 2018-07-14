@@ -52,7 +52,7 @@
                                                     <p>#{lis.comentario}</p>
                                                     <p:outputLabel value="Plato : " />
                                                     <p>#{lis.plato}</p>
-                                                    <p><h:commandLink value="Mas.." actionListener="#{publicacionBean.guardarDatos(lis.empresa, lis.direccion,lis.est_delivery, lis.est_reserva)}" action="verpublicacion.xhtml?faces-redirect=true" disabled="#{usuarioBean.verificarSession()}"></h:commandLink></p>
+                                                    <p><h:commandLink value="Mas.." actionListener="#{publicacionBean.guardarDatos(lis.empresa, lis.direccion,lis.est_delivery, lis.est_reserva,lis.id_empresa,lis.id_plato,lis.plato,lis.precio,lis.id_puplicado)}" action="verpublicacion.xhtml?faces-redirect=true" disabled="#{usuarioBean.verificarSession()}"></h:commandLink></p>
                                                 </div>
                                             </div>
                                         </div>   

@@ -71,19 +71,67 @@ public class PublicacionBean {
         this.Reserva = Reserva;
     }
 
-    public void guardarDatos(String Empresa, String Direccion, String Delivery, String Reserva) {
+    public void guardarDatos(String Empresa, String Direccion, String Delivery, String Reserva,int id_emp,int ip_pro,String plato,double  precio,int id_publicacion) {
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("empresa", Empresa);
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("direccion", Direccion);
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("delivery", Delivery);
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("reserva", Reserva);
+        
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("id_emp", id_emp);
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("id_pro", ip_pro);
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("plato", plato);
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("precio", precio);
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("id_pub", id_publicacion);
         this.Empresa = Empresa;
         this.Direccion = Direccion;
         this.Delivery = Delivery;
         this.Reserva = Reserva;
     }
-
     
+    public String op_idpub() {
+        String emp = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("id_pub");
+        if (emp != null) {
+            return emp;
+        } else {
+            return "0";
+        }
+    }
     
+    public double op_precio() {
+        double emp = (double) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("precio");
+        if (emp != 0) {
+            return emp;
+        } else {
+            return 0;
+        }
+    }
+    
+    public String op_plato() {
+        String emp = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("plato");
+        if (emp != null) {
+            return emp;
+        } else {
+            return "";
+        }
+    }
+    
+    public String op_idpro() {
+        String emp = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("id_pro");
+        if (emp != null) {
+            return emp;
+        } else {
+            return "0";
+        }
+    }
+    
+    public String op_idemp() {
+        String emp = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("id_emp");
+        if (emp != null) {
+            return emp;
+        } else {
+            return "0";
+        }
+    }
     
     public String op_emp() {
         String emp = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("empresa");

@@ -19,6 +19,15 @@ public class Publicacion_Plato {
     private String direccion;
     private String est_delivery;
     private String est_reserva;
+    private double precio;
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
 
     public String getDireccion() {
         return direccion;

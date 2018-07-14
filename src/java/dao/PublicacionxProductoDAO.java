@@ -22,7 +22,7 @@ public class PublicacionxProductoDAO extends dao {
         ResultSet rs;
         List<Publicacion_Plato> publicacion_Platos = new ArrayList<Publicacion_Plato>();
         this.Conectar();
-            PreparedStatement pst= this.getCn().prepareStatement("select e.idempresa,e.nombre,pu.nombre as publica,p.idproducto,p.nombre as plato,pu.idpublicacion,e.direccion,p.delivery,p.reserva from publicacionxproducto pp inner join publicacion pu on pp.idpublicacion=pu.idpublicacion inner join empresa e on pu.idempresa=e.idempresa inner join producto p on pp.idproducto=p.idproducto where p.nombre like '%" + plato + "%'");
+            PreparedStatement pst= this.getCn().prepareStatement("select e.idempresa,e.nombre,pu.nombre as publica,p.idproducto,p.nombre as plato,pu.idpublicacion,e.direccion,p.delivery,p.reserva,p.precio from publicacionxproducto pp inner join publicacion pu on pp.idpublicacion=pu.idpublicacion inner join empresa e on pu.idempresa=e.idempresa inner join producto p on pp.idproducto=p.idproducto where p.nombre like '%" + plato + "%'");
             //pst.setString(1, plato);
             rs=pst.executeQuery();
             
@@ -37,6 +37,7 @@ public class PublicacionxProductoDAO extends dao {
                 publicacion_Plato.setDireccion(rs.getString("direccion"));
                 publicacion_Plato.setEst_delivery(rs.getString("delivery"));
                 publicacion_Plato.setEst_reserva(rs.getString("reserva"));
+                publicacion_Plato.setPrecio(rs.getDouble("precio"));
                 publicacion_Platos.add(publicacion_Plato);
             }
         try{

@@ -244,5 +244,5 @@ div .publicacion p a {
 }
 
 .caja_publicacion { margin: 200px auto; position: relative; width: 600px; }
-.caja_publicacion_i{ border: black solid 2px;width: 300px;height: 300px; }
-.caja_publicacion_e{ border: black solid 2px;width: 300px;height: 300px; }
+.caja_publicacion_i{ border: black solid 2px;width: 300px;height: 350px; }
+.caja_publicacion_e{ border: black solid 2px;width: 300px;height: 350px; }
