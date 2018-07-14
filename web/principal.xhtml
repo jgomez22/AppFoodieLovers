@@ -29,7 +29,7 @@
                                     <p:outputLabel value="Plato" />
                                     <p:inputText class="form-control" value="#{publicacionxProductoBean.plato_}" />
                                 </div>
-                                <p:commandButton class="btn btn-default" value="Buscar Plato" update="grid"/>
+                                <p:commandButton class="btn btn-default" value="Buscar Plato" update="grid" onclick="vaciar();"/>
 
 
                             </div>
@@ -66,5 +66,13 @@
             </ui:define>
         </ui:composition>
     </h:body>
-    
+    <script>
+        function vaciar() {
+            elemento var = document.getElementById("ff");
+            while (element.firstChild) {
+                element.removeChild(element.firstChild);
+            }
+
+        }
+    </script>
 </html>
