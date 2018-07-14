@@ -34,53 +34,101 @@
 
                             <div class="col-md-8">
                                 <div class="row">
-                                    <br />
-                                    <br />
+
                                     <h2 align="center">Servicios - Proceso <h:outputLabel value="" ></h:outputLabel></h2>
 
-                                    <h:form>
+                                    <h:form id="form">
                                         <p:messages autoUpdate="true" showDetail="true"/>
-                                        <p:commandButton class="btn btn-default right" value="Actualizar" actionListener="#{deliveryBean.listarEmpresa(usuarioBean.mostrarId(),2)}" update="data" />
+                                        <div>
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item">Servicio</li>
+                                                <li class="breadcrumb-item active">Delivery</li>
+                                            </ol>
+                                            <p:commandButton class="btn btn-default right" value="Actualizar" actionListener="#{deliveryBean.listarEmpresa(usuarioBean.mostrarId(),2)}" update="data" />
+                                            <h:dataTable class="table table-responsive" id="data" value="#{deliveryBean.listarEmpresa(usuarioBean.mostrarId(),2)}" var="delivery">
 
-                                        <h:dataTable class="table table-responsive" id="data" value="#{deliveryBean.listarEmpresa(usuarioBean.mostrarId(),2)}" var="delivery">
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Usuario"></h:outputText>
+                                                    </f:facet>
+                                                    <h:outputText value="#{usuarioBean.obtenerNombre(delivery.idusuario)}"></h:outputText>
+                                                </h:column>
 
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="Usuario"></h:outputText>
-                                                </f:facet>
-                                                <h:outputText value="#{usuarioBean.obtenerNombre(delivery.idusuario)}"></h:outputText>
-                                            </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Comida"></h:outputText>
+                                                    </f:facet>
+                                                    <h:outputText value="#{productoBean.obtenerNombre(delivery.idproducto)}"></h:outputText>
+                                                </h:column>
 
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="Comida"></h:outputText>
-                                                </f:facet>
-                                                <h:outputText value="#{productoBean.obtenerNombre(delivery.idproducto)}"></h:outputText>
-                                            </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Importe Total"></h:outputText>
+                                                    </f:facet>
+                                                    <h:outputText value="#{delivery.importe_total}"></h:outputText>
+                                                </h:column>
 
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="Importe Total"></h:outputText>
-                                                </f:facet>
-                                                <h:outputText value="#{delivery.importe_total}"></h:outputText>
-                                            </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Direccion"></h:outputText>
+                                                    </f:facet>
+                                                    <h:outputText value="#{delivery.direccion}"></h:outputText>
+                                                </h:column>
 
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="Direccion"></h:outputText>
-                                                </f:facet>
-                                                <h:outputText value="#{delivery.direccion}"></h:outputText>
-                                            </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Cambiar"></h:outputText>
+                                                    </f:facet>
+                                                    <p:commandLink value="Finalizado" actionListener="#{deliveryBean.actualizaraFinalizado(delivery.iddelivery)}" update="form"/>
+                                                </h:column>
 
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="Cambiar"></h:outputText>
-                                                </f:facet>
-                                                <p:commandLink value="Finalizado" actionListener="#{deliveryBean.actualizaraFinalizado(delivery.iddelivery)}" />
-                                            </h:column>
+                                            </h:dataTable>
+                                        </div>
+                                        <div>
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item">Servicio</li>
+                                                <li class="breadcrumb-item active">Reserva</li>
+                                            </ol>
+                                            <p:commandButton class="btn btn-default right" value="Actualizar" actionListener="#{reservaBean.listarEmpresa(usuarioBean.mostrarId(),2)}" update="data1" />
+                                            <h:dataTable class="table table-responsive" id="data1" value="#{reservaBean.listarEmpresa(usuarioBean.mostrarId(),2)}" var="reserva">
 
-                                        </h:dataTable>
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Usuario"></h:outputText>
+                                                    </f:facet>
+                                                    <h:outputText value="#{usuarioBean.obtenerNombre(reserva.idusuario)}"></h:outputText>
+                                                </h:column>
 
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Comida"></h:outputText>
+                                                    </f:facet>
+                                                    <h:outputText value="#{productoBean.obtenerNombre(reserva.idproducto)}"></h:outputText>
+                                                </h:column>
+
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Importe Total"></h:outputText>
+                                                    </f:facet>
+                                                    <h:outputText value="#{reserva.importe_total}"></h:outputText>
+                                                </h:column>
+
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Hora Llegada"></h:outputText>
+                                                    </f:facet>
+                                                    <h:outputText value="#{reserva.hora_llegada}"></h:outputText>
+                                                </h:column>
+
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Cambiar"></h:outputText>
+                                                    </f:facet>
+                                                    <p:commandLink value="Finalizado" actionListener="#{reservaBean.actualizaraFinalizado(reserva.idreserva)}" update="form"/>
+                                                </h:column>
+
+                                            </h:dataTable>
+                                        </div>
                                     </h:form>
                                 </div>
                             </div>
