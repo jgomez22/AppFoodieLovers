@@ -23,7 +23,7 @@
                                     <ul class="nav nav-pills nav-stacked">
                                         <li><a href="home.xhtml"><span class="glyphicon glyphicon-chevron-right"></span> Home</a></li>
                                         <li ><a href="publicacion_lista.xhtml"><span class="glyphicon glyphicon-chevron-right"></span>Publicacion</a></li>
-                                        <li class="active"  ><a href=""><span class="glyphicon glyphicon-chevron-right"></span>Productos</a></li>
+                                        <li class="active"  ><a href=""><span class="glyphicon glyphicon-chevron-right"></span>Producto</a></li>
                                         <li><a href="empresa_servicios_inicio.xhtml"><span class="glyphicon glyphicon-chevron-right"></span>Servicio Inicio</a></li>
                                         <li><a href="empresa_servicios_proceso.xhtml"><span class="glyphicon glyphicon-chevron-right"></span>Servicio Proceso</a></li>
                                         <li><a href="empresa_servicios_finalizado.xhtml"><span class="glyphicon glyphicon-chevron-right"></span>Servicio Finalizado</a></li>
@@ -31,17 +31,9 @@
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                <div class="col-md-8 form-group cero_margin_padding" style="">
-                                    <input type="text" class="form-control form-control-lg form-control--rounded"  placeholder="Buscar"></input>
-                                </div>
-                                <div class="col-md-2 form-group ">
-                                    <button type="submit"  style="margin-right:0px" class="btn btn-default">Buscar</button>
-                                </div>
-                                <div class="col-md-2 form-group ">
-                                    <a href="producto_nuevo.xhtml"><button type="submit" style="margin-left:0px" class="btn btn-default">Nuevo</button></a>
-                                </div>
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12" style="padding:5px">
+                                        <a href="producto_nuevo.xhtml"><button type="submit" style="margin-left:0px" class="btn btn-default right">Nuevo</button></a>
                                         <h:form>
                                             <h:dataTable class="table table-responsive" id="data" value="#{productoBean.listar(usuarioBean.mostrarId())}" var="producto">
                                                 <h:column>
@@ -63,13 +55,6 @@
                                                         <h:outputText value="Precio"></h:outputText>
                                                     </f:facet>
                                                     <h:outputText value="#{producto.precio}"></h:outputText>
-                                                </h:column>
-
-                                                <h:column>
-                                                    <f:facet name="header">
-                                                        <h:outputText value="Acciones"></h:outputText>
-                                                    </f:facet>
-                                                    <h:outputText value="EDIT"></h:outputText>
                                                 </h:column>
 
                                             </h:dataTable>

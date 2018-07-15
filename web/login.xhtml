@@ -21,24 +21,31 @@
                         <div class="container2">
                             <section id="content">
                                 <h:form>
-                                    <h1>INICION DE SESION</h1>
+                                    <h1>Iniciar Sesión</h1>
                                     <p:messages autoUpdate="true" showDetail="true"/>
-                                    <h:panelGrid>
-                                        <div>
-                                            <p:inputText placeholder="USUARIO" value="#{usuarioBean.usuario.correo}" required="true" id="username"/> 
-                                        </div>
-                                        <div>
-                                            <p:password placeholder="CONTRASEÑA" value="#{usuarioBean.usuario.contrasena}" required="true" id="password"/> 
-                                        </div>
-                                        <div>
-                                            <p:commandButton value="INICIAR SESIÓN" action="#{usuarioBean.iniciaSe()}"/>
-                                        </div>
-                                    </h:panelGrid>
-                                    <p:separator />
-                                    <div>
-
-                                        <a href="#">REGISTRAR</a>
+                                    <div class="col-md-8">
+                                        <h:panelGrid>
+                                            <div>
+                                                <p:inputText placeholder="Usuario" value="#{usuarioBean.usuario.correo}" required="true" id="username"/> 
+                                            </div>
+                                            <div>
+                                                <p:password placeholder="Password" value="#{usuarioBean.usuario.contrasena}" required="true" id="password"/> 
+                                            </div>
+                                            <p:separator />
+                                            <div>
+                                                <p:commandButton class="btn btn-default" value="Loguearse" action="#{usuarioBean.iniciaSe()}"/>
+                                            </div>
+                                            <p:separator />
+                                        </h:panelGrid>
                                     </div>
+                                    <div class="col-md-4">
+                                        <img src="resources/images/user.png" class="img-responsive" alt="Responsive image" />
+
+                                        <a type="button" class="btn btn-default left" href="usuario_registrar.xhtml">Registrar Usuario</a>
+
+                                    </div>
+
+
                                 </h:form><!-- form -->
                             </section><!-- content -->
                         </div><!-- container -->

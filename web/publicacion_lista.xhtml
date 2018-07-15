@@ -33,28 +33,10 @@
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                <div class="col-md-8 form-group cero_margin_padding" style="">
-                                    <input type="text" class="form-control form-control-lg form-control--rounded"  placeholder="Buscar"></input>
-                                </div>
-                                <div class="col-md-2 form-group ">
-                                    <button type="submit"  style="margin-right:0px" class="btn btn-default">Buscar</button>
-                                </div>
-                                <div class="col-md-2 form-group ">
-                                    <a href="publicacion_nuevo.xhtml"><button type="submit" style="margin-left:0px" class="btn btn-default">Nuevo</button></a>
-                                </div>
 
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12" style="padding:5px">
-
-                                        
-
-                                        <h:panelGroup rendered="#{publicacionBean.message != ''}">
-                                            <div class="alert alert-primary" role="alert">
-                                                <h:outputText value="#{publicacionBean.message}"/>
-                                            </div>
-                                        </h:panelGroup>
-
-
+                                        <a href="publicacion_nuevo.xhtml"><button type="submit" style="margin-left:0px" class="btn btn-default right">Nuevo</button></a>
                                         <h:form>
                                             <h:dataTable class="table table-responsive"  value="#{publicacionBean.listar(usuarioBean.obtenerIdEmpresa(usuarioBean.mostrarId()))}" var="publicacion">
                                                 <h:column>
@@ -83,13 +65,6 @@
                                                         <h:outputText value="Hora cierre"></h:outputText>
                                                     </f:facet>
                                                     <h:outputText value="#{publicacion.horacierre}"></h:outputText>
-                                                </h:column>
-
-                                                <h:column>
-                                                    <f:facet name="header">
-                                                        <h:outputText value="Acciones"></h:outputText>
-                                                    </f:facet>
-                                                    <h:outputText value="EDIT"></h:outputText>
                                                 </h:column>
 
                                             </h:dataTable>
