@@ -63,7 +63,7 @@
                                                 <f:selectItems value="#{publicacionBean.listarProductos(usuarioBean.mostrarId())}" var="producto" itemLabel="#{producto.nombre}" itemValue="#{producto.idproducto}" />
                                             </p:selectManyCheckbox>
 
-                                            <p:commandButton value="Guardar publicacion" action="#{publicacionBean.registrar(usuarioBean.mostrarId())}" update="msj" styleClass="btn" style="margin-top: 20px"/>
+                                            <p:commandButton value="Guardar publicacion" action="#{publicacionBean.registrar(usuarioBean.obtenerIdEmpresa(usuarioBean.mostrarId()))}" update="msj" styleClass="btn" style="margin-top: 20px"/>
 
 
                                         </h:form>
