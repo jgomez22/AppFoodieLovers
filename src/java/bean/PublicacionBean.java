@@ -168,10 +168,10 @@ public class PublicacionBean {
             return false;
         }
     }
-    public List<Publicacion> listar() throws SQLException {
+    public List<Publicacion> listar( int idemp) throws SQLException {
         PublicacionDAO dao = new PublicacionDAO();
         try {
-            lstPublicacion = dao.listar();
+            lstPublicacion = dao.listar(idemp);
             return lstPublicacion;
         } catch (SQLException e) {
             throw e;

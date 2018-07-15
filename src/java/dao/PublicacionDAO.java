@@ -18,13 +18,14 @@ import modelo.PublicacionxProducto;
 
 public class PublicacionDAO extends dao {
 
-    public List<Publicacion> listar() throws SQLException {
+    public List<Publicacion> listar(int idemp) throws SQLException {
         List<Publicacion> lista = null;
         ResultSet rs;
 
         try {
             this.Conectar();
-            PreparedStatement pst = this.getCn().prepareStatement("SELECT idpublicacion, nombre, horapublicacion, horacierre FROM publicacion");
+            PreparedStatement pst = this.getCn().prepareStatement("SELECT idpublicacion, nombre, horapublicacion, horacierre FROM publicacion WHERE idempresa=?");
+            pst.setInt(1, idemp);
             rs = pst.executeQuery();
             lista = new ArrayList();
 
