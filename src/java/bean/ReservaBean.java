@@ -81,10 +81,10 @@ public class ReservaBean {
         this.lstReserva = lstReserva;
     }
 
-    public List<Reserva> listar(int id) {
+    public List<Reserva> listar(int id) throws Exception {
         ReservaDAO dao = new ReservaDAO();
         try {
-            //lstReserva = dao.listar(id);
+            lstReserva = dao.listar(id);
         } catch (Exception e) {
             throw e;
         }

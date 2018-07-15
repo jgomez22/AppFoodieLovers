@@ -27,7 +27,7 @@
                                 <li class="active"><a href="#"><span class="glyphicon glyphicon-chevron-right"></span>Home</a></li>
                                 <li><a href="usuario_actualizar.xhtml"><span class="glyphicon glyphicon-chevron-right"></span>Actualizar Datos</a></li>
                                 <li><a href="#{usuarioBean.validarCuentaRestaurant()}"><span class="glyphicon glyphicon-chevron-right"></span>Restaurante</a></li>
-                                
+
                             </ul>
                         </div>
                     </div>
@@ -70,6 +70,43 @@
                                             <h:outputText value="Estado"></h:outputText>
                                         </f:facet>
                                         <h:outputText value="#{estadoBean.obtenerNombre(delivery.idestado)}"></h:outputText>
+                                    </h:column>
+
+                                </h:dataTable>
+
+                            </h:form>
+
+                            <h:form>
+                                <p:commandButton class="btn btn-default right" value="Actualizar" actionListener="#{reservaBean.listar(usuarioBean.mostrarId())}" update="data1" />
+
+                                <h:dataTable class="table table-responsive" id="data1" value="#{reservaBean.listar(usuarioBean.mostrarId())}" var="reserva">
+
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Codigo"></h:outputText>
+                                        </f:facet>
+                                        <h:outputText value="#{reserva.idreserva}"></h:outputText>
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Comida"></h:outputText>
+                                        </f:facet>
+                                        <h:outputText value="#{productoBean.obtenerNombre(reserva.idproducto)}"></h:outputText>
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Restaurante"></h:outputText>
+                                        </f:facet>
+                                        <h:outputText value="#{empresaBean.obtenerNombre(reserva.idproducto)}"></h:outputText>
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Estado"></h:outputText>
+                                        </f:facet>
+                                        <h:outputText value="#{estadoBean.obtenerNombre(reserva.idestado)}"></h:outputText>
                                     </h:column>
 
                                 </h:dataTable>

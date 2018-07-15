@@ -88,7 +88,7 @@ public class ReservaDAO extends dao {
         try {
             this.Conectar();
             PreparedStatement pst = this.getCn().prepareStatement("SELECT "
-                    + "idreserva, cantidad, importe_total, direccion, detalles, idusuario, idproducto, idestado "
+                    + "idreserva, cantidad, importe_total, hora_llegada, detalles, idusuario, idproducto, idestado "
                     + "FROM reserva "
                     + "WHERE idusuario=?");
             pst.setInt(1, id);
