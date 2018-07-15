@@ -50,10 +50,9 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav main-nav  clear navbar-right ">
-                            <li><a style="margin:0px;padding: 5px 10px" class="navactive color_animation" href="#top">HOME</a></li>
-                            <li><a style="margin:0px;padding: 5px 10px" class="navactive color_animation" href="home.xhtm   l">Admin</a></li>
-                            <li><a style="margin:0px;padding: 5px 30px" class="login color_animation_login" href="login.xhtml">LOGIN</a></li>
-                            <li><h:form ><p:commandButton value="Cerrar session" actionListener="#{usuarioBean.cerrarSession()}" action="login.xhtml?faces-redirect=true" disabled="#{usuarioBean.verificarSession()}"/></h:form></li>
+                            <li><a style="margin:0px;padding: 5px 10px" class="navactive color_animation" href="#{usuarioBean.validarHome()}">HOME</a></li>
+                            <li><a style="margin:0px;padding: 5px 10px" class="navactive color_animation" href="#{usuarioBean.validarAdmin()}">Admin</a></li>
+                            <li><h:form ><p:commandLink style="margin:0px;padding: 5px 30px" value="#{usuarioBean.btnValue()}" class="login color_animation_login" actionListener="#{usuarioBean.btnActList()}"/></h:form></li>
                             
                         </ul>
                     </div><!-- /.navbar-collapse -->

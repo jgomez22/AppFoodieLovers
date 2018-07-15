@@ -135,4 +135,64 @@ public class UsuarioBean {
         return red;
     }
 
+    public String validarHome() {
+        Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        String link = "";
+        try {
+            if (us == null) {
+                link = "index.xhtml";
+            } else {
+                link = "principal.xhtml";
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return link;
+    }
+
+    public String validarAdmin() {
+        Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        String link = "";
+        try {
+            if (us == null) {
+                link = "index.xhtml";
+            } else {
+                link = "usuario_index.xhtml";
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return link;
+    }
+
+    public String btnValue() {
+        String nombre = "";
+        Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        try {
+            if (us == null) {
+                nombre = "Login";
+            } else {
+                nombre = "Salir";
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return nombre;
+    }
+
+    public void btnActList() throws Exception {
+        Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        try {
+            if (us == null) {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+            } else {
+                cerrarSession();
+                FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+
 }
