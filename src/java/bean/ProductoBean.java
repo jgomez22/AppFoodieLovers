@@ -18,7 +18,22 @@ public class ProductoBean {
 
     private Producto producto = new Producto();
     private List<Producto> lstProducto;
+    
+    private List<Producto> checkboxLstProducto;
 
+    private Producto[] selectedPublicacionxProducto;
+
+    
+    
+    public Producto[] getSelectedPublicacionxProducto() {
+        return selectedPublicacionxProducto;
+    }
+
+    public void setSelectedPublicacionxProducto(Producto[] selectedPublicacionxProducto) {
+        this.selectedPublicacionxProducto = selectedPublicacionxProducto;
+    }
+    
+    
     public Producto getProducto() {
         return producto;
     }

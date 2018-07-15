@@ -15,6 +15,7 @@ public class BaseBean {
     private int empresaId;
 
     public BaseBean() {
+        
     }
     
     

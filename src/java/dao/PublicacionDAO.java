@@ -8,6 +8,7 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -15,12 +16,9 @@ import java.util.logging.Logger;
 import modelo.Publicacion;
 import modelo.PublicacionxProducto;
 
-
 public class PublicacionDAO extends dao {
-    
-    
-    
-     public List<Publicacion> listar() throws SQLException {
+
+    public List<Publicacion> listar() throws SQLException {
         List<Publicacion> lista = null;
         ResultSet rs;
 
@@ -46,23 +44,34 @@ public class PublicacionDAO extends dao {
         }
         return lista;
     }
-     
-     public void registrar(Publicacion publicacion, List<PublicacionxProducto> pxp) throws SQLException{
+
+    public int registrar(Publicacion publicacion, int idempresa) throws SQLException {
+        int lastid = 1;
+
         try {
             this.Conectar();
             PreparedStatement pst;
-            pst = this.getCn().prepareStatement("insert into publicacion (nombre,horapublicacion, horacierre) values(?,?,?)");
+            System.out.println("mirate esta" + publicacion.getNombre());
+            pst = this.getCn().prepareStatement("insert into publicacion (nombre,horapublicacion, horacierre, idempresa) values(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             pst.setString(1, publicacion.getNombre());
             pst.setString(2, publicacion.getHorapublicacion());
             pst.setString(3, publicacion.getHoracierre());
+            pst.setInt(4, idempresa);
+
             pst.executeUpdate();
+
+            try (ResultSet rs = pst.getGeneratedKeys()) {
+                if (rs.next()) {
+                    lastid = rs.getInt(1);
+                }
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(PublicacionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            this.Cerrar();
         }
-        finally{
-        this.Cerrar();
-        }
+        return lastid;
     }
 
-    
 }

@@ -45,6 +45,16 @@
 
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12" style="padding:5px">
+
+                                        
+
+                                        <h:panelGroup rendered="#{publicacionBean.message != ''}">
+                                            <div class="alert alert-primary" role="alert">
+                                                <h:outputText value="#{publicacionBean.message}"/>
+                                            </div>
+                                        </h:panelGroup>
+
+
                                         <h:form>
                                             <h:dataTable class="table table-responsive"  value="#{publicacionBean.listar()}" var="publicacion">
                                                 <h:column>

@@ -8,6 +8,7 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -16,32 +17,55 @@ import modelo.Publicacion_Plato;
 import modelo.PublicacionxProducto;
 
 public class PublicacionxProductoDAO extends dao {
-    
-    public List<Publicacion_Plato> ListaPublicacion(String plato) throws SQLException{
-        Publicacion_Plato publicacion_Plato=null;
+
+    public List<Publicacion_Plato> ListaPublicacion(String plato) throws SQLException {
+        Publicacion_Plato publicacion_Plato = null;
         ResultSet rs;
         List<Publicacion_Plato> publicacion_Platos = new ArrayList<Publicacion_Plato>();
         this.Conectar();
-            PreparedStatement pst= this.getCn().prepareStatement("select e.idempresa,e.nombre,pu.nombre as publica,p.idproducto,p.nombre as plato,pu.idpublicacion from publicacionxproducto pp inner join publicacion pu on pp.idpublicacion=pu.idpublicacion inner join empresa e on pu.idempresa=e.idempresa inner join producto p on pp.idproducto=p.idproducto where p.nombre like '%" + plato + "%'");
-            //pst.setString(1, plato);
-            rs=pst.executeQuery();
-            
-            while(rs.next()){
-                publicacion_Plato = new Publicacion_Plato();
-                publicacion_Plato.setId_empresa(rs.getInt("idempresa"));
-                publicacion_Plato.setEmpresa(rs.getString("nombre"));
-                publicacion_Plato.setComentario(rs.getString("publica"));
-                publicacion_Plato.setId_plato(rs.getInt("idproducto"));
-                publicacion_Plato.setId_puplicado(rs.getInt("idpublicacion"));
-                publicacion_Plato.setPlato(rs.getString("plato"));
-                publicacion_Platos.add(publicacion_Plato);
-            }
-        try{
+        PreparedStatement pst = this.getCn().prepareStatement("select e.idempresa,e.nombre,pu.nombre as publica,p.idproducto,p.nombre as plato,pu.idpublicacion from publicacionxproducto pp inner join publicacion pu on pp.idpublicacion=pu.idpublicacion inner join empresa e on pu.idempresa=e.idempresa inner join producto p on pp.idproducto=p.idproducto where p.nombre like '%" + plato + "%'");
+        //pst.setString(1, plato);
+        rs = pst.executeQuery();
+
+        while (rs.next()) {
+            publicacion_Plato = new Publicacion_Plato();
+            publicacion_Plato.setId_empresa(rs.getInt("idempresa"));
+            publicacion_Plato.setEmpresa(rs.getString("nombre"));
+            publicacion_Plato.setComentario(rs.getString("publica"));
+            publicacion_Plato.setId_plato(rs.getInt("idproducto"));
+            publicacion_Plato.setId_puplicado(rs.getInt("idpublicacion"));
+            publicacion_Plato.setPlato(rs.getString("plato"));
+            publicacion_Platos.add(publicacion_Plato);
+        }
+        try {
             return publicacion_Platos;
-        }catch(Exception e){
+        } catch (Exception e) {
             return null;
-        }finally {
+        } finally {
             this.Cerrar();
         }
+    }
+
+    public void registrarPublicacionxProducto(List<String> pubxprod, int idpublicacion ) throws SQLException {
+
+         try {
+            this.Conectar();
+            
+            for(String publicacionxproducto : pubxprod){
+            PreparedStatement pst;
+            pst = this.getCn().prepareStatement("insert into publicacionxproducto (idproducto,idpublicacion) values(?,?)");
+            pst.setInt(1, Integer.parseInt(publicacionxproducto));
+            pst.setInt(2, idpublicacion);
+            pst.executeUpdate();
+            
+         
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PublicacionxProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            this.Cerrar();
+        }
+
     }
 }
