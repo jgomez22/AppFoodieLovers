@@ -51,8 +51,10 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav main-nav  clear navbar-right ">
                             <li><a style="margin:0px;padding: 5px 10px" class="navactive color_animation" href="#top">HOME</a></li>
-                            <li><a style="margin:0px;padding: 5px 10px" class="navactive color_animation" href="principal.xhtml">Admin</a></li>
+                            <li><a style="margin:0px;padding: 5px 10px" class="navactive color_animation" href="home.xhtm   l">Admin</a></li>
                             <li><a style="margin:0px;padding: 5px 30px" class="login color_animation_login" href="login.xhtml">LOGIN</a></li>
+                            <li><h:form ><p:commandButton value="Cerrar session" actionListener="#{usuarioBean.cerrarSession()}" action="login.xhtml?faces-redirect=true" disabled="#{usuarioBean.verificarSession()}"/></h:form></li>
+                            
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div>

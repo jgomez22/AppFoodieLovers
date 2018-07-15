@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+    <h:head>
+        <title>INGRESO</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="template.xhtml">
+            <ui:define name="content">
+                <div class="container">
+                    <div class="row caja_publicacion">
+                        <div class="col-md-12" align="center">
+                            <H1>RESERVA</H1>
+                        </div>
+                        <div class="col-md-6 caja_publicacion_i">
+                            <img src="resources/images/user.png" width="250px" height="250px"/>
+                            <H2 align="center">#{publicacionBean.op_plato()}</H2>
+                        </div>
+                        <div class="col-md-6 caja_publicacion_e">
+                            <h:form>
+                                <p:messages autoUpdate="true" showDetail="true"/>
+                                <div class="form-group">
+                                    <p:outputLabel value="Cantidad" />
+                                    <p:inputText class="form-control" value="#{reservaBean.cant_cli}"/>
+                                </div>
+                                <div class="form-group">
+                                    <p:outputLabel value="Hora Llegada" />
+                                    <p:inputText class="form-control" value="#{reservaBean.hor_cli}" />
+                                </div>
+                                <div class="form-group">
+                                    <p:outputLabel value="Detalle" />
+                                    <p:inputText class="form-control" value="#{reservaBean.det_cli}" />
+                                </div>
+                                <div class="form-group">
+                                    <p:outputLabel value="Importe" />
+                                    <p:inputText class="form-control" value="#{publicacionBean.op_precio()}" disabled="true" />
+                                </div>
+                                <p:commandButton class="btn btn-primary" value="Registrar" actionListener="#{reservaBean.registrar()}" action="principal.xhtml?faces-redirect=true"/>
+
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

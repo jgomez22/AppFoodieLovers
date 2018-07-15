@@ -13,13 +13,21 @@ import modelo.PublicacionxProducto;
 import dao.PublicacionDAO;
 import dao.PublicacionxProductoDAO;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 
 import modelo.Producto;
+
+import java.util.ArrayList;
+import javax.faces.context.FacesContext;
+import modelo.Publicacion_Plato;
 
 @ManagedBean
 @RequestScoped
 public class PublicacionBean {
+
+    private String Empresa;
+    private String Direccion;
+    private String Delivery;
+    private String Reserva;
 
     private Publicacion publicacion = new Publicacion();
     private Producto producto = new Producto();
@@ -27,7 +35,9 @@ public class PublicacionBean {
     private List<Producto> lstProducto;
 
     private List<PublicacionxProducto> lstPublicacionxProducto;
-
+    
+    List<Publicacion_Plato> list = new ArrayList<Publicacion_Plato>();
+   
     private List<Producto> checkboxLstProducto;
     private List<String> selectedPublicacionxProducto;
     
@@ -52,7 +62,112 @@ public class PublicacionBean {
             throw e;
         }
     }
-
+    
+    public void guardarDatos(String Empresa, String Direccion, String Delivery, String Reserva,int id_emp,int ip_pro,String plato,double  precio,int id_publicacion) {
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("empresa", Empresa);
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("direccion", Direccion);
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("delivery", Delivery);
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("reserva", Reserva);
+        
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("id_emp", id_emp);
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("id_pro", ip_pro);
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("plato", plato);
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("precio", precio);
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("id_pub", id_publicacion);
+        this.Empresa = Empresa;
+        this.Direccion = Direccion;
+        this.Delivery = Delivery;
+        this.Reserva = Reserva;
+    }
+    
+    public String op_idpub() {
+        String emp = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("id_pub");
+        if (emp != null) {
+            return emp;
+        } else {
+            return "0";
+        }
+    }
+    
+    public double op_precio() {
+        double emp = (double) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("precio");
+        if (emp != 0) {
+            return emp;
+        } else {
+            return 0;
+        }
+    }
+    
+    public String op_plato() {
+        String emp = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("plato");
+        if (emp != null) {
+            return emp;
+        } else {
+            return "";
+        }
+    }
+    
+    public String op_idpro() {
+        String emp = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("id_pro");
+        if (emp != null) {
+            return emp;
+        } else {
+            return "0";
+        }
+    }
+    
+    public String op_idemp() {
+        String emp = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("id_emp");
+        if (emp != null) {
+            return emp;
+        } else {
+            return "0";
+        }
+    }
+    
+    public String op_emp() {
+        String emp = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("empresa");
+        if (emp != null) {
+            return emp;
+        } else {
+            return "";
+        }
+    }
+    
+    public String op_Dir() {
+        String emp = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("direccion");
+        if (emp != null) {
+            return emp;
+        } else {
+            return "";
+        }
+    }
+    
+    public boolean op_Del() {
+        String del = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("delivery");
+        if (del != null) {
+            if(del.equals("0")){
+                return true;
+            }else{
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    
+    public boolean op_Res() {
+        String del = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("reserva");
+        if (del != null) {
+            if(del.equals("0")){
+                return true;
+            }else{
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
     public List<Publicacion> listar() throws SQLException {
         PublicacionDAO dao = new PublicacionDAO();
         try {
@@ -71,8 +186,10 @@ public class PublicacionBean {
 
         try {
 
+
             int lastid = dao.registrar(publicacion, idempresa);
             daoPublicacionxProducto.registrarPublicacionxProducto(selectedPublicacionxProducto, lastid);
+
         } catch (SQLException ex) {
             Logger.getLogger(PublicacionBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -113,5 +230,47 @@ public class PublicacionBean {
     public void setMessage(String message) {
         this.message = message;
     }
+    
+    public List<Publicacion_Plato> getList() {
+        return list;
+    }
+
+    public void setList(List<Publicacion_Plato> list) {
+        this.list = list;
+    }
+    
+    public String getEmpresa() {
+        return Empresa;
+    }
+
+    public void setEmpresa(String Empresa) {
+        this.Empresa = Empresa;
+    }
+
+    public String getDireccion() {
+        return Direccion;
+    }
+
+    public void setDireccion(String Direccion) {
+        this.Direccion = Direccion;
+    }
+    
+    public String getDelivery() {
+        return Delivery;
+    }
+
+    public void setDelivery(String Delivery) {
+        this.Delivery = Delivery;
+    }
+
+    public String getReserva() {
+        return Reserva;
+    }
+
+    public void setReserva(String Reserva) {
+        this.Reserva = Reserva;
+    }
+    
+    
 
 }

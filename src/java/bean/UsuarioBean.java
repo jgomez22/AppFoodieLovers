@@ -26,7 +26,7 @@ public class UsuarioBean {
         this.usuario = usuario;
     }
 
-    public String registrar() {
+    public void registrar() {
         UsuarioDAO dao = new UsuarioDAO();
 
         try {
@@ -35,7 +35,7 @@ public class UsuarioBean {
         } catch (Exception ex) {
             Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "usuario_registrar.xhtml";
+
     }
 
     public String obtenerNombre(int id) throws Exception {
@@ -74,28 +74,33 @@ public class UsuarioBean {
         return redireccion2;
     }
 
-    public void verificarSession() {
+    public Boolean verificarSession() {
+        Boolean estado;
         try {
             Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
             if (us == null) {
-
+                estado = true;
+            } else {
+                estado = false;
             }
         } catch (Exception e) {
-
+            estado = true;
         }
+        return estado;
     }
 
-    public void CerrarSession() {
-        try {
-            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        } catch (Exception e) {
-
-        }
+    public void cerrarSession() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
     }
 
     public String mostrarUsu() {
         Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-        return us.getNombre();
+        if (us == null) {
+            return "Falta logearse";
+        } else {
+            return us.getNombre();
+        }
+
     }
 
     public int mostrarId() {
@@ -106,9 +111,9 @@ public class UsuarioBean {
     public int obtenerIdEmpresa(int idusu) throws Exception {
         UsuarioDAO dao = new UsuarioDAO();
         int idemp;
-        try{
+        try {
             idemp = dao.obtenerIdEmpresa(idusu);
-        }catch(Exception e){
+        } catch (Exception e) {
             throw e;
         }
         return idemp;
@@ -129,4 +134,5 @@ public class UsuarioBean {
         }
         return red;
     }
+
 }

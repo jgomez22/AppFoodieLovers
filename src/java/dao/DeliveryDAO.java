@@ -8,8 +8,32 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Delivery;
+import modelo.Usuario;
 
 public class DeliveryDAO extends dao {
+    
+    
+    public void registrar(int cantidad,double total,String dir,String det,int id_us,int id_pro) throws SQLException {
+        try {
+            this.Conectar();
+            PreparedStatement pst;
+            pst = this.getCn().prepareStatement("INSERT INTO delivery (cantidad,importe_total,direccion,detalles,idusuario,idproducto,idestado) "
+                    + "VALUES(?,?,?,?,?,?,?)");
+            pst.setInt(1,cantidad);
+            pst.setDouble(2,total);
+            pst.setString(3,dir);
+            pst.setString(4, det);
+            pst.setInt(5,id_us);
+            pst.setInt(6,id_pro);
+            pst.setInt(7,1);
+            pst.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            this.Cerrar();
+        }
+    }
     
     public void actualizaraPro(int iddel, int nest) throws SQLException{
         
